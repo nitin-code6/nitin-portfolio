@@ -4,28 +4,32 @@ import styles from './Skills.module.css';
 
 const skillCategories = [
   {
-    title: "Programming Languages",
+    title: "Programming",
     skills: ["C++", "JavaScript", "TypeScript"]
   },
   {
-    title: "Backend & Systems",
-    skills: ["Node.js", "Express.js", "REST APIs", "System Design", "Caching"]
-  },
-  {
-    title: "Databases & Message Queues",
-    skills: ["MongoDB", "MySQL", "Redis", "Kafka", "BullMQ"]
-  },
-  {
-    title: "Frontend Development",
+    title: "Frontend",
     skills: ["React.js", "Next.js", "HTML", "CSS"]
   },
   {
-    title: "AI & Generative AI",
-    skills: ["LLM fundamentals", "Prompt engineering", "LLM APIs", "RAG concepts"]
+    title: "Backend",
+    skills: ["Node.js", "Express.js", "REST APIs"]
   },
   {
-    title: "Core CS & DevOps",
-    skills: ["Data Structures & Algorithms", "OOP", "DBMS", "OS", "Git/GitHub", "Docker", "Linux"]
+    title: "Databases & Messaging",
+    skills: ["MongoDB", "MySQL", "Redis", "Kafka", "BullMQ"]
+  },
+  {
+    title: "AI & Generative AI",
+    skills: ["LLM Fundamentals", "Prompt Engineering", "LLM APIs", "RAG Concepts", "Embeddings"]
+  },
+  {
+    title: "System Design & DevOps",
+    skills: ["API Design", "Caching", "Scalability", "Git/GitHub", "Docker", "Linux"]
+  },
+  {
+    title: "Core CS",
+    skills: ["Data Structures & Algorithms", "OOP", "DBMS", "Operating Systems"]
   }
 ];
 
@@ -34,12 +38,12 @@ export default function Skills() {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 }
+      transition: { staggerChildren: 0.05 }
     }
   };
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 10 },
     show: { opacity: 1, y: 0 }
   };
 
@@ -47,8 +51,8 @@ export default function Skills() {
     <section id="skills" className={`section ${styles.skillsSection}`}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Technical <span className="text-gradient">Arsenal</span></h2>
-          <p>Technologies and systems I work with to build scalable applications.</p>
+          <h2 className="sectionTitle">Technical <span className="text-gradient">Skills</span></h2>
+          <p>Technologies and concepts I work with to build scalable systems.</p>
         </div>
 
         <motion.div 
@@ -59,8 +63,8 @@ export default function Skills() {
           viewport={{ once: true, margin: "-50px" }}
         >
           {skillCategories.map((category, idx) => (
-            <motion.div key={idx} variants={item} className={`glass-panel ${styles.categoryCard}`}>
-              <h3>{category.title}</h3>
+            <motion.div key={idx} variants={item} className={styles.categoryCard}>
+              <h3 className={styles.categoryTitle}>{category.title}</h3>
               <div className={styles.skillTags}>
                 {category.skills.map((skill, sIdx) => (
                   <span key={sIdx} className={styles.tag}>{skill}</span>

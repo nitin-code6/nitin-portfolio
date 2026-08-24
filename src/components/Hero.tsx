@@ -1,7 +1,7 @@
 'use client';
 import { motion, Variants } from 'framer-motion';
-import { ArrowRight, Download } from 'lucide-react';
-import { FaGithub } from 'react-icons/fa';
+import { ArrowRight, Download, Mail } from 'lucide-react';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import Link from 'next/link';
 import styles from './Hero.module.css';
 
@@ -11,8 +11,8 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
+        staggerChildren: 0.1,
+        delayChildren: 0.1
       }
     }
   };
@@ -22,43 +22,57 @@ export default function Hero() {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { type: 'spring', stiffness: 100, damping: 10 }
+      transition: { type: 'spring', stiffness: 100, damping: 15 }
     }
   };
 
   return (
     <section className={styles.heroSection}>
-      <div className={styles.glow} />
-      
       <div className={`container ${styles.container}`}>
         <motion.div 
-          className={styles.content}
+          className={styles.profileGrid}
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <motion.div variants={itemVariants} className={styles.badge}>
-            <span className={styles.pulse} />
-            Available for opportunities
+          {/* Avatar Area */}
+          <motion.div variants={itemVariants} className={styles.avatarContainer}>
+            <div className={styles.avatarPlaceholder}>
+              <span className={styles.avatarInitials}>NK</span>
+            </div>
           </motion.div>
           
-          <motion.h1 variants={itemVariants} className="heading-hero">
-            Building scalable <br />
-            <span className="text-gradient">backend systems</span> & <br />
-            modern applications.
-          </motion.h1>
-          
-          <motion.p variants={itemVariants} className={styles.subtitle}>
-            Hi, I'm Nitin Kumar, a Full-Stack Software Developer currently studying at NIT Calicut. I specialize in building high-performance APIs, asynchronous processing systems, and practical AI integrations.
-          </motion.p>
-          
-          <motion.div variants={itemVariants} className={styles.ctaGroup}>
-            <Link href="#projects" className="btn btn-primary">
-              View Projects <ArrowRight size={18} style={{ marginLeft: '0.5rem' }} />
-            </Link>
-            <a href="https://github.com/nitin-code6" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
-              <FaGithub size={18} style={{ marginRight: '0.5rem' }} /> GitHub
-            </a>
+          {/* Info Area */}
+          <motion.div variants={itemVariants} className={styles.infoContainer}>
+            <h1 className={styles.name}>Nitin Kumar</h1>
+            <h2 className={styles.title}>Full-Stack Software Developer</h2>
+            <p className={styles.bio}>
+              I build scalable applications and systems-oriented projects. Currently pursuing my B.Tech at NIT Calicut, I specialize in full-stack development, API design, and integrating emerging AI technologies into practical engineering solutions.
+            </p>
+            
+            <div className={styles.socialLinks}>
+              <a href="https://github.com/nitin-code6" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <FaGithub size={22} />
+              </a>
+              <a href="https://www.linkedin.com/in/nitbit07/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <FaLinkedin size={22} />
+              </a>
+              <a href="https://x.com/Nitin_5432" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <FaTwitter size={22} />
+              </a>
+              <a href="mailto:nitbit710@gmail.com" aria-label="Email">
+                <Mail size={22} />
+              </a>
+            </div>
+            
+            <div className={styles.ctaGroup}>
+              <Link href="#projects" className="btn btn-primary">
+                View Projects
+              </Link>
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+                <Download size={18} style={{ marginRight: '0.5rem' }} /> Resume
+              </a>
+            </div>
           </motion.div>
         </motion.div>
       </div>

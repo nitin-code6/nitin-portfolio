@@ -1,24 +1,25 @@
 import { Star, GitFork, ExternalLink } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
-import styles from './FeaturedProjects.module.css'; // Reuse styles for consistency
+import styles from './FeaturedProjects.module.css'; // We'll share some styles but override specifics
 
 async function getGithubRepos() {
   try {
-    const res = await fetch('https://api.github.com/users/nitin-code6/repos?sort=updated&per_page=6', {
-      next: { revalidate: 3600 }, // Cache for 1 hour
+    const res = await fetch('https://api.github.com/users/nitin-code6/repos?sort=updated&per_page=10', {
+      next: { revalidate: 3600 },
       headers: process.env.GITHUB_TOKEN ? {
         Authorization: `token ${process.env.GITHUB_TOKEN}`
       } : {}
     });
 
     if (!res.ok) {
+      console.warn("GitHub API fetch failed. Status:", res.status);
       return [];
     }
 
     const repos = await res.json();
     
-    // Filter out forks and featured projects (already displayed)
-    const featuredNames = ['CodeArena', 'Deep-Packet-Inspection', 'FerryFlow'];
+    // Filter out forks, already featured projects, and ones with no description
+    const featuredNames = ['CodeArena', 'Deep-Packet-Inspection', 'FerryFlow', 'nitin-portfolio'];
     return repos
       .filter((repo: any) => !repo.fork && !featuredNames.includes(repo.name) && repo.description)
       .slice(0, 6);
@@ -36,39 +37,40 @@ export default async function GithubProjects() {
   }
 
   return (
-    <div style={{ marginTop: '4rem' }}>
-      <h3 className={styles.subTitle}>Other Projects (GitHub Auto-Synced)</h3>
-      <div className={styles.grid}>
+    <div style={{ marginTop: '5rem' }}>
+      <h3 className={styles.subTitle}>Recent Open Source</h3>
+      <div style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
         {repos.map((repo: any) => (
-          <div key={repo.id} className={`glass-panel ${styles.projectCard}`}>
+          <div key={repo.id} className={styles.projectCard} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column' }}>
             <div className={styles.cardHeader}>
-              <h4 style={{ wordBreak: 'break-word' }}>{repo.name}</h4>
+              <h4 style={{ wordBreak: 'break-word', fontSize: '1.2rem' }}>{repo.name}</h4>
               <div className={styles.links}>
                 <a href={repo.html_url} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                  <FaGithub size={20} />
+                  <FaGithub size={18} />
                 </a>
                 {repo.homepage && (
                   <a href={repo.homepage} target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
-                    <ExternalLink size={20} />
+                    <ExternalLink size={18} />
                   </a>
                 )}
               </div>
             </div>
             
-            <p className={styles.description}>
+            <p className={styles.description} style={{ flexGrow: 1, marginBottom: '1.5rem', fontSize: '0.9rem' }}>
               {repo.description}
             </p>
             
-            <div className={styles.techStack} style={{ marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid var(--glass-border)' }}>
+            <div className={styles.techStack} style={{ marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
               {repo.language && (
-                <span className={styles.techTag} style={{ background: 'var(--glass-bg)', color: 'var(--foreground)' }}>
+                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--primary)', display: 'inline-block' }}></span>
                   {repo.language}
                 </span>
               )}
-              <span className={styles.techTag} style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', background: 'transparent', color: 'var(--text-muted)' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
                 <Star size={14} /> {repo.stargazers_count}
               </span>
-              <span className={styles.techTag} style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', background: 'transparent', color: 'var(--text-muted)' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
                 <GitFork size={14} /> {repo.forks_count}
               </span>
             </div>

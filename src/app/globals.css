@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;700;800&display=swap');
 
 :root {
-  --background: #0a0a0c;
-  --foreground: #e0e0e0;
-  --primary: #6366f1; /* Indigo */
-  --primary-hover: #4f46e5;
-  --secondary: #1e1e24;
-  --accent: #10b981; /* Emerald */
-  --text-muted: #9ca3af;
-  --border: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.05);
+  --background: #0f1115; /* Clean dark background */
+  --surface: #16191f; /* Slightly lighter for cards */
+  --foreground: #e2e8f0;
+  --primary: #3b82f6; /* Classic blue for a professional look */
+  --primary-hover: #2563eb;
+  --secondary: #1e2128;
+  --text-muted: #94a3b8;
+  --border: #2e3440;
+  --glass-bg: #16191f; /* Removing glassmorphism, using solid surface */
+  --glass-border: #2e3440;
   
-  --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Outfit', sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Inter', system-ui, sans-serif; /* Use Inter for everything for a cleaner look */
 }
 
 * {
@@ -60,11 +60,7 @@ button {
 }
 
 .text-gradient {
-  background: linear-gradient(to right, var(--primary), var(--accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+  color: var(--primary); /* Replaced gradient with solid primary for a cleaner look */
 }
 
 /* Layout Utilities */
@@ -80,11 +76,9 @@ button {
 
 /* UI Components */
 .glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  border-radius: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem; /* Slightly sharper corners */
 }
 
 .btn {

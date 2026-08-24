@@ -10,10 +10,8 @@
 
 .header.scrolled {
   padding: 1rem 0;
-  background: rgba(10, 10, 12, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--glass-border);
+  background: rgba(15, 17, 21, 0.95);
+  border-bottom: 1px solid var(--border);
 }
 
 .navContainer {

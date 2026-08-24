@@ -1,17 +1,12 @@
 .skillsSection {
-  background: var(--secondary);
-  border-top: 1px solid var(--glass-border);
-  border-bottom: 1px solid var(--glass-border);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .header {
   text-align: center;
   margin-bottom: 4rem;
-}
-
-.header h2 {
-  font-size: clamp(2rem, 4vw + 1rem, 3rem);
-  margin-bottom: 1rem;
 }
 
 .header p {
@@ -22,41 +17,40 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
 }
 
 .categoryCard {
-  padding: 2rem;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.categoryCard h3 {
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--glass-border);
+.categoryTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #fff;
 }
 
 .skillTags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .tag {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--glass-border);
-  padding: 0.4rem 0.8rem;
-  border-radius: 2rem;
+  background: var(--background);
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
   font-size: 0.85rem;
-  color: var(--foreground);
+  color: var(--text-muted);
   transition: all 0.2s ease;
 }
 
 .tag:hover {
-  background: rgba(99, 102, 241, 0.15);
-  border-color: rgba(99, 102, 241, 0.5);
+  background: var(--primary);
+  border-color: var(--primary);
   color: #fff;
-  transform: translateY(-2px);
 }

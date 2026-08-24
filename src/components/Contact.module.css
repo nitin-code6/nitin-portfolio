@@ -1,10 +1,6 @@
 .contactSection {
-  background: var(--secondary);
-}
-
-.wrapper {
-  max-width: 700px;
-  margin: 0 auto;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
 }
 
 .header {
@@ -12,92 +8,96 @@
   margin-bottom: 3rem;
 }
 
-.header h2 {
-  font-size: clamp(2rem, 4vw + 1rem, 3rem);
-  margin-bottom: 1rem;
-}
-
 .header p {
   color: var(--text-muted);
 }
 
-.form {
+.formContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--background);
   padding: 2.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+}
+
+.form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.formGrid {
-  display: grid;
+.inputGroup {
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
 }
 
 @media (min-width: 600px) {
-  .formGrid {
-    grid-template-columns: 1fr 1fr;
+  .inputGroup {
+    flex-direction: row;
+  }
+  .inputWrapper {
+    flex: 1;
   }
 }
 
-.formGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
 .label {
+  display: block;
+  margin-bottom: 0.5rem;
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--foreground);
 }
 
-.input, .textarea {
+.input,
+.textarea {
   width: 100%;
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid var(--glass-border);
-  border-radius: 0.5rem;
   padding: 0.75rem 1rem;
-  color: #fff;
-  font-family: inherit;
-  font-size: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  color: var(--foreground);
+  font-family: var(--font-sans);
   transition: all 0.2s ease;
 }
 
-.input:focus, .textarea:focus {
+.input:focus,
+.textarea:focus {
   outline: none;
   border-color: var(--primary);
-  background: rgba(99, 102, 241, 0.05);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
 }
 
 .submitBtn {
-  margin-top: 1rem;
-  padding: 1rem;
-  font-size: 1rem;
-}
-
-.submitBtn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-.successMessage {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--accent);
-  background: rgba(16, 185, 129, 0.1);
-  padding: 1rem;
-  border-radius: 0.5rem;
+  width: 100%;
   margin-top: 1rem;
 }
 
+.successMessage,
 .errorMessage {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: #ef4444;
-  background: rgba(239, 68, 68, 0.1);
+  gap: 0.75rem;
   padding: 1rem;
   border-radius: 0.5rem;
+  font-size: 0.95rem;
   margin-top: 1rem;
+}
+
+.successMessage {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.errorMessage {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
 }
