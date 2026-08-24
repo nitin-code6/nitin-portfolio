@@ -1,0 +1,128 @@
+.experienceSection {
+  background: var(--background);
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 4vw + 1rem, 3rem);
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.grid {
+  display: grid;
+  gap: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.columnTitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20px;
+  width: 2px;
+  background: var(--glass-border);
+}
+
+.timelineItem {
+  position: relative;
+  padding-left: 3.5rem;
+}
+
+.timelineIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--background);
+  border: 2px solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  z-index: 2;
+}
+
+.timelineContent {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+}
+
+.timelineContent h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: var(--primary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.timelineContent p:last-child {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.grade {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.achievementsCard {
+  padding: 1.5rem;
+}
+
+.achievementsCard ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.achievementsCard li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.bulletIcon {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}

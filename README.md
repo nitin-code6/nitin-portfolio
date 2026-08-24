@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nitin Kumar — Portfolio
 
-## Getting Started
+Premium developer portfolio built with Next.js, Framer Motion, and Vanilla CSS.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js App Router**: Modern server-first React architecture.
+- **Dynamic GitHub Sync**: Automatically fetches and lists recent non-fork public repositories using the GitHub API.
+- **Premium Aesthetics**: Dark theme, glassmorphism, responsive design, and smooth animations using Framer Motion.
+- **Contact System**: Secure email delivery via Resend.
+- **SEO Optimized**: Pre-configured metadata and semantic HTML.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework:** [Next.js](https://nextjs.org/)
+- **Styling:** Vanilla CSS (CSS Modules) + Custom Variables
+- **Animations:** [Framer Motion](https://www.framer.com/motion/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Email API:** [Resend](https://resend.com/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Local Setup
 
-## Learn More
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Configure environment variables:
+   Copy `.env.example` to `.env` and fill in your keys.
+   ```bash
+   cp .env.example .env
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Open [http://localhost:3000](http://localhost:3000)
 
-## Deploy on Vercel
+## Environment Variables
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `GITHUB_TOKEN` (Optional): Used to increase API rate limits when fetching repositories.
+- `RESEND_API_KEY`: Required for the contact form to work.
+- `CONTACT_EMAIL`: The destination address where contact form submissions will be sent.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+The project is configured and ready to be deployed to **Vercel**.
+Ensure you add the Environment Variables in the Vercel dashboard during deployment.
+
+## Maintaining the Resume
+
+Place your updated resume as `resume.pdf` in the `/public` directory. The "Download Resume" buttons are pre-configured to point to `/resume.pdf`.
