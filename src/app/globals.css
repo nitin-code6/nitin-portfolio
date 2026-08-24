@@ -60,7 +60,11 @@ button {
 }
 
 .text-gradient {
-  color: var(--primary); /* Replaced gradient with solid primary for a cleaner look */
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Layout Utilities */
