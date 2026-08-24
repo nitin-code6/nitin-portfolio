@@ -3,6 +3,7 @@ import { motion, Variants } from 'framer-motion';
 import { ArrowRight, Download, Mail } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Hero.module.css';
 
 export default function Hero() {
@@ -37,8 +38,14 @@ export default function Hero() {
         >
           {/* Avatar Area */}
           <motion.div variants={itemVariants} className={styles.avatarContainer}>
-            <div className={styles.avatarPlaceholder}>
-              <span className={styles.avatarInitials}>NK</span>
+            <div className={styles.avatarPlaceholder} style={{ position: 'relative', overflow: 'hidden' }}>
+              <Image 
+                src="/profile.png" 
+                alt="Nitin Kumar" 
+                fill
+                style={{ objectFit: 'cover' }}
+                priority
+              />
             </div>
           </motion.div>
           
