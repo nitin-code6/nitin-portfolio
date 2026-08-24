@@ -109,9 +109,15 @@ export default function Chatbot() {
                       <Bot size={16} />
                     </div>
                   )}
-                  <div className={`${styles.messageBubble} ${msg.role === 'user' ? styles.userBubble : styles.assistantBubble}`}>
-                    {msg.content}
-                  </div>
+                  <div 
+                    className={`${styles.messageBubble} ${msg.role === 'user' ? styles.userBubble : styles.assistantBubble}`}
+                    dangerouslySetInnerHTML={{ 
+                      __html: msg.content
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/(?:^|\n)\* /g, '<br/>• ')
+                        .replace(/\n/g, '<br/>')
+                    }}
+                  />
                 </div>
               ))}
               {isLoading && (
