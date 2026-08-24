@@ -43,6 +43,7 @@ export default function Hero() {
                 src="/profile.png" 
                 alt="Nitin Kumar" 
                 fill
+                sizes="(max-width: 768px) 200px, 280px"
                 style={{ objectFit: 'cover' }}
                 priority
               />
