@@ -1,5 +1,7 @@
 # Nitin Kumar — Full-Stack Developer Portfolio
 
+Live Deployment: [https://nitincode.vercel.app/](https://nitincode.vercel.app/)
+
 This is the source code for my personal portfolio, built with Next.js (App Router), Vanilla CSS, and Framer Motion. It's designed with a clean, academic-inspired layout focusing heavily on content, engineering depth, and professional presentation.
 
 ## Features
