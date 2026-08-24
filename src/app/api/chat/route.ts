@@ -81,9 +81,9 @@ export async function POST(req: Request) {
     }
 
     // Configure the model
-    // We use gemini-1.5-flash as it is fast and perfect for standard chat tasks
+    // We use gemini-3.6-flash as requested by the API error logs
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash",
+      model: "gemini-3.6-flash",
       systemInstruction: SYSTEM_INSTRUCTION
     });
 
