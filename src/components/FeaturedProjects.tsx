@@ -14,15 +14,7 @@ const featuredProjects = [
     demo: "", 
     featured: true
   },
-  {
-    title: "Deep Packet Inspection",
-    description: "Network Security and Traffic Analysis Engine built to parse and classify network packets efficiently at the lower levels of the network stack.",
-    problemSolution: "Architecture: A multi-threaded packet processing system in C++.\nSolution: Parses Ethernet, IPv4, TCP, and UDP headers natively. Uses worker threads and thread-safe queues to analyze flow-based traffic in real-time.",
-    tech: ["C++", "TCP/IP", "PCAP", "Linux", "Multithreading"],
-    github: "https://github.com/nitin-code6/Deep-Packet-Inspection",
-    demo: "",
-    featured: true
-  },
+
   {
     title: "FerryFlow",
     description: "Real-Time Ferry Operations & Passenger Management System deployed for active use.",
@@ -48,6 +40,7 @@ export default function FeaturedProjects() {
             viewport={{ once: true }}
             transition={{ delay: idx * 0.1 }}
           >
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className={styles.cardLink} aria-label={`View ${project.title}`} />
             <div className={styles.cardHeader}>
               <h4>{project.title}</h4>
               <div className={styles.links}>

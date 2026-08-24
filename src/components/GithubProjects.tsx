@@ -42,6 +42,7 @@ export default async function GithubProjects() {
       <div style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
         {repos.map((repo: any) => (
           <div key={repo.id} className={styles.projectCard} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column' }}>
+            <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className={styles.cardLink} aria-label={`View ${repo.name}`} />
             <div className={styles.cardHeader}>
               <h4 style={{ wordBreak: 'break-word', fontSize: '1.2rem' }}>{repo.name}</h4>
               <div className={styles.links}>
