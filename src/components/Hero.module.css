@@ -60,11 +60,10 @@
 }
 
 .name {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: clamp(3rem, 6vw, 4.5rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   margin-bottom: 0.25rem;
-  color: #fff;
 }
 
 .title {

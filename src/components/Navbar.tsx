@@ -28,7 +28,7 @@ export default function Navbar() {
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.navContainer}`}>
         <Link href="/" className={styles.logo}>
-          <span className="text-gradient">Nitin</span>
+          <span style={{ color: '#fff' }}>Nitin</span><span className="text-gradient">Kumar</span>
         </Link>
 
         {/* Desktop Nav */}

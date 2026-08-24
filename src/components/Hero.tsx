@@ -51,7 +51,9 @@ export default function Hero() {
           
           {/* Info Area */}
           <motion.div variants={itemVariants} className={styles.infoContainer}>
-            <h1 className={styles.name}>Nitin Kumar</h1>
+            <h1 className={styles.name}>
+              <span style={{ color: '#fff' }}>Nitin</span> <span className="text-gradient">Kumar</span>
+            </h1>
             <h2 className={styles.title}>Full-Stack Software Developer</h2>
             <p className={styles.bio}>
               I build scalable applications and systems-oriented projects. Currently pursuing my B.Tech at NIT Calicut, I specialize in full-stack development, API design, and integrating emerging AI technologies into practical engineering solutions.
