@@ -39,6 +39,7 @@ export default function Experience() {
   ];
 
   const achievements = [
+    "Completed 100 Days of Code with daily technical posting on LinkedIn.",
     "Solved 700+ Data Structures and Algorithms problems (GeeksForGeeks & LeetCode).",
     "Achieved 1700+ rating on GeeksForGeeks competitive programming platform.",
     "Earned SQL 50 Badge on LeetCode.",
