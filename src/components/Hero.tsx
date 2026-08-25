@@ -40,7 +40,7 @@ export default function Hero() {
           <motion.div variants={itemVariants} className={styles.avatarContainer}>
             <div className={styles.avatarPlaceholder} style={{ position: 'relative', overflow: 'hidden' }}>
               <Image 
-                src="/profile.png" 
+                src="/profile.jpg" 
                 alt="Nitin Kumar" 
                 fill
                 sizes="(max-width: 768px) 200px, 280px"
