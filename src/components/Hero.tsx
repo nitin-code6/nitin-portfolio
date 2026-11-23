@@ -4,6 +4,7 @@ import { Download, Mail, Play, Network, Sparkles, Code2, ArrowUpRight } from 'lu
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
+import Canvas3D from './Canvas3D';
 import styles from './Hero.module.css';
 
 export default function Hero() {
@@ -43,6 +44,9 @@ export default function Hero() {
       {/* Ambient background glows */}
       <div className={styles.ambientGlowPrimary}></div>
       <div className={styles.ambientGlowSecondary}></div>
+      
+      {/* Interactive 3D Neural Constellation Canvas */}
+      <Canvas3D />
 
       <div className={`container ${styles.container}`}>
         <motion.div 

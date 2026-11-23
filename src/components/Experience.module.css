@@ -1,35 +1,39 @@
 .experienceSection {
-  background: var(--background);
+  background: transparent;
+  padding: 6rem 0;
+  position: relative;
 }
 
 .grid {
   display: grid;
-  gap: 4rem;
+  gap: 3.5rem;
 }
 
 @media (min-width: 1024px) {
   .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 5rem;
   }
 }
 
 .columnHeader {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 2.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
+  gap: 0.85rem;
+  margin-bottom: 2.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .headerIcon {
-  color: var(--primary);
+  color: #38bdf8;
 }
 
 .columnTitle {
   font-size: 1.5rem;
   font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
 }
 
 .timeline {
@@ -42,44 +46,46 @@
 .timeline::before {
   content: '';
   position: absolute;
-  top: 8px;
+  top: 10px;
   bottom: 0;
-  left: 5px;
-  width: 1px;
-  background: var(--border);
+  left: 6px;
+  width: 2px;
+  background: linear-gradient(180deg, #38bdf8 0%, rgba(56, 189, 248, 0.05) 100%);
 }
 
 .timelineItem {
   position: relative;
   padding-left: 2.5rem;
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease;
 }
 
 .timelineItem:hover {
-  transform: translateX(5px);
+  transform: translateX(4px);
 }
 
 .timelineItem:hover .timelineDot {
-  background: var(--primary);
-  box-shadow: 0 0 10px rgba(2, 132, 199, 0.5);
+  background: #38bdf8;
+  box-shadow: 0 0 14px #38bdf8;
+  transform: scale(1.2);
 }
 
 .timelineDot {
   position: absolute;
-  top: 8px;
+  top: 6px;
   left: 0;
-  width: 11px;
-  height: 11px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: var(--background);
-  border: 2px solid var(--primary);
+  background: #090e1a;
+  border: 2px solid #38bdf8;
   z-index: 2;
+  transition: all 0.25s ease;
 }
 
 .timelineContent h4 {
-  font-size: 1.15rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
   color: #fff;
 }
 
@@ -87,7 +93,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 @media (min-width: 600px) {
@@ -99,46 +105,50 @@
 }
 
 .company {
-  color: var(--primary);
-  font-weight: 500;
+  color: #38bdf8;
+  font-weight: 600;
   font-size: 0.95rem;
 }
 
 .date {
-  color: var(--text-muted);
+  color: #94a3b8;
   font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .timelineContent p {
-  color: var(--text-muted);
+  color: #cbd5e1;
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .grade {
   display: inline-block;
   margin-top: 0.5rem;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  color: #fff;
-  background: var(--surface);
+  color: #38bdf8;
+  background: rgba(14, 165, 233, 0.12);
   padding: 0.25rem 0.75rem;
-  border-radius: 4px;
-  border: 1px solid var(--border);
+  border-radius: 6px;
+  border: 1px solid rgba(14, 165, 233, 0.25);
+  font-family: monospace;
 }
 
 .achievementsCard {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.75rem;
+  border-radius: 18px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
 .achievementsCard:hover {
   transform: translateY(-4px);
-  border-color: var(--primary);
-  box-shadow: 0 10px 30px -15px rgba(2, 132, 199, 0.2);
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 16px 35px -12px rgba(14, 165, 233, 0.25);
 }
 
 .achievementsCard ul {
@@ -152,16 +162,17 @@
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  color: var(--text-muted);
+  color: #cbd5e1;
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .bullet {
-  width: 6px;
-  height: 6px;
-  background: var(--primary);
+  width: 7px;
+  height: 7px;
+  background: #38bdf8;
   border-radius: 50%;
   margin-top: 0.45rem;
   flex-shrink: 0;
+  box-shadow: 0 0 6px #38bdf8;
 }

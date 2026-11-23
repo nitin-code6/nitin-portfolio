@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;700;800&display=swap');
 
 :root {
-  --background: #0f1115; /* Clean dark background */
-  --surface: #16191f; /* Slightly lighter for cards */
-  --foreground: #e2e8f0;
-  --primary: #3b82f6; /* Classic blue for a professional look */
-  --primary-hover: #2563eb;
-  --secondary: #1e2128;
+  --background: #080d1a;
+  --surface: #0f172a;
+  --foreground: #f1f5f9;
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --secondary: #1e293b;
   --text-muted: #94a3b8;
-  --border: #2e3440;
-  --glass-bg: #16191f; /* Removing glassmorphism, using solid surface */
-  --glass-border: #2e3440;
+  --border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(15, 23, 42, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
   
   --font-sans: 'Inter', system-ui, sans-serif;
-  --font-heading: 'Inter', system-ui, sans-serif; /* Use Inter for everything for a cleaner look */
+  --font-heading: 'Inter', system-ui, sans-serif;
 }
 
 * {
@@ -27,10 +27,30 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   background-color: var(--background);
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(14, 165, 233, 0.15), transparent),
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px, 48px 48px;
   color: var(--foreground);
   font-family: var(--font-sans);
   line-height: 1.6;
   scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080d1a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
 }
 
 a {
@@ -60,7 +80,7 @@ button {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #0ea5e9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -69,7 +89,7 @@ button {
 
 /* Layout Utilities */
 .container {
-  max-width: 1440px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -78,41 +98,49 @@ button {
   padding: 6rem 0;
 }
 
-/* UI Components */
-.glass-panel {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 0.5rem; /* Slightly sharper corners */
+.sectionTitle {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
+/* UI Components */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  padding: 0.65rem 1.35rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.01em;
 }
 
 .btn-primary {
-  background: var(--primary);
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
   color: white;
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.35);
 }
 
 .btn-primary:hover {
-  background: var(--primary-hover);
+  background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 6px 22px rgba(2, 132, 199, 0.5);
 }
 
 .btn-outline {
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--foreground);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.6);
+  color: #e2e8f0;
+  backdrop-filter: blur(8px);
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
   transform: translateY(-2px);
 }
