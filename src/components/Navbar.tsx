@@ -2,13 +2,15 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import Link from 'next/link';
-import { Menu, X, Download } from 'lucide-react';
+import { Menu, X, Download, ChevronDown } from 'lucide-react';
+import ResumeModal from './ResumeModal';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('projects');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
   const { scrollYProgress } = useScroll();
 
   useEffect(() => {
@@ -87,15 +89,18 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <a 
-              href="/resume.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <button 
+              type="button"
+              onClick={() => setIsResumeModalOpen(true)}
               className="btn btn-primary" 
-              style={{ padding: '0.45rem 1rem', fontSize: '0.84rem' }}
+              style={{ padding: '0.45rem 1rem', fontSize: '0.84rem', gap: '0.35rem', cursor: 'pointer' }}
+              aria-haspopup="dialog"
+              aria-label="Select and Download Resume Version"
             >
-              <Download size={13} style={{ marginRight: '0.35rem' }} /> Resume
-            </a>
+              <Download size={13} />
+              <span>Resume</span>
+              <ChevronDown size={12} style={{ opacity: 0.8 }} />
+            </button>
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -122,18 +127,28 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <a 
-              href="/resume.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <button 
+              type="button"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsResumeModalOpen(true);
+              }}
               className="btn btn-primary" 
-              style={{ width: '100%', marginTop: '0.75rem', justifyContent: 'center' }}
+              style={{ width: '100%', marginTop: '0.75rem', justifyContent: 'center', gap: '0.4rem', cursor: 'pointer' }}
+              aria-label="Download Resume Options"
             >
-              <Download size={14} style={{ marginRight: '0.35rem' }} /> Download Resume
-            </a>
+              <Download size={14} />
+              <span>Download Resume (SDE / Analytics)</span>
+            </button>
           </nav>
         )}
       </header>
+
+      {/* Resume Selection Modal */}
+      <ResumeModal
+        isOpen={isResumeModalOpen}
+        onClose={() => setIsResumeModalOpen(false)}
+      />
     </>
   );
 }

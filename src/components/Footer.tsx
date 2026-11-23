@@ -1,11 +1,15 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowUp, Mail, FileText } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import ResumeModal from './ResumeModal';
 import styles from './Footer.module.css';
 
 export default function Footer() {
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -83,17 +87,17 @@ export default function Footer() {
                 >
                   <Mail size={18} />
                 </a>
-                <a
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={() => setIsResumeModalOpen(true)}
                   className={styles.resumePill}
-                  aria-label="Resume PDF"
-                  title="View Resume"
+                  aria-label="Select and Download Resume Version"
+                  title="View Resume Options"
+                  style={{ cursor: 'pointer', fontFamily: 'inherit' }}
                 >
                   <FileText size={14} />
                   <span>Resume</span>
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -118,6 +122,12 @@ export default function Footer() {
           </button>
         </div>
       </div>
+
+      {/* Resume Selection Modal */}
+      <ResumeModal
+        isOpen={isResumeModalOpen}
+        onClose={() => setIsResumeModalOpen(false)}
+      />
     </footer>
   );
 }
