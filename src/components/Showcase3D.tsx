@@ -1,7 +1,7 @@
 'use client';
 import { useState, useRef, MouseEvent } from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, Sparkles, Terminal, Activity, Layers, ShieldCheck, Play } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, Sparkles, Terminal, Activity, Layers, ShieldCheck, Play, ArrowUpRight } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import styles from './Showcase3D.module.css';
 
@@ -146,9 +146,8 @@ export default function Showcase3D() {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     
-    // Calculate rotation (-12deg to +12deg)
-    const rotX = -((y - rect.height / 2) / (rect.height / 2)) * 10;
-    const rotY = ((x - rect.width / 2) / (rect.width / 2)) * 12;
+    const rotX = -((y - rect.height / 2) / (rect.height / 2)) * 8;
+    const rotY = ((x - rect.width / 2) / (rect.width / 2)) * 10;
 
     setRotateX(rotX);
     setRotateY(rotY);
@@ -177,7 +176,7 @@ export default function Showcase3D() {
             Live Production <span className="text-gradient">Deployments</span>
           </h2>
           <p className={styles.subtitle}>
-            Hover and tilt the 3D viewport to inspect the architectures of my deployed applications.
+            Explore my deployed web applications. Hover and tilt to inspect telemetry and live endpoints.
           </p>
         </div>
 
@@ -221,7 +220,7 @@ export default function Showcase3D() {
             <div 
               className={styles.specularGlare}
               style={{
-                background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(255, 255, 255, 0.18) 0%, transparent 60%)`
+                background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(255, 255, 255, 0.16) 0%, transparent 60%)`
               }}
             />
 
@@ -242,107 +241,116 @@ export default function Showcase3D() {
               </div>
             </div>
 
-            {/* Content Display Area */}
-            <div className={styles.cardContent}>
-              <div className={styles.infoCol}>
-                <div className={styles.badgeRow}>
-                  <span className={styles.categoryBadge} style={{ color: activeApp.previewTheme.accent, borderColor: `${activeApp.previewTheme.accent}40` }}>
-                    {activeApp.category}
-                  </span>
-                  <span className={styles.platformBadge}>
-                    Deployed on {activeApp.platform}
-                  </span>
-                </div>
-
-                <h3 className={styles.appName}>{activeApp.name}</h3>
-                <p className={styles.tagline}>{activeApp.tagline}</p>
-                <p className={styles.description}>{activeApp.description}</p>
-
-                {/* Key Features */}
-                <div className={styles.featuresBlock}>
-                  <span className={styles.featureLabel}>Engineered Highlights:</span>
-                  <ul className={styles.featureList}>
-                    {activeApp.features.map((feat, idx) => (
-                      <li key={idx}>
-                        <span className={styles.checkIcon}>✓</span>
-                        {feat}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Tech Tags */}
-                <div className={styles.techList}>
-                  {activeApp.techStack.map((tech, idx) => (
-                    <span key={idx} className={styles.techPill}>{tech}</span>
-                  ))}
-                </div>
-
-                {/* Call-to-Action Buttons */}
-                <div className={styles.actionButtons}>
-                  <a
-                    href={activeApp.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`btn btn-primary ${styles.launchBtn}`}
-                  >
-                    <Play size={16} fill="currentColor" /> Launch Live App
-                    <ExternalLink size={15} style={{ marginLeft: '4px' }} />
-                  </a>
-                  <a
-                    href={activeApp.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-outline"
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
-                  >
-                    <FaGithub size={16} /> Source Code
-                  </a>
-                </div>
-              </div>
-
-              {/* Metrics & Architecture Telemetry Visual */}
-              <div className={styles.previewCol}>
-                <div className={styles.telemetryCard}>
-                  <div className={styles.telemetryHeader}>
-                    <Activity size={18} style={{ color: activeApp.previewTheme.accent }} />
-                    <span>Production Architecture Telemetry</span>
+            {/* Content Display Area with Animated Switch */}
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={activeApp.id}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.22 }}
+                className={styles.cardContent}
+              >
+                <div className={styles.infoCol}>
+                  <div className={styles.badgeRow}>
+                    <span className={styles.categoryBadge} style={{ color: activeApp.previewTheme.accent, borderColor: `${activeApp.previewTheme.accent}40` }}>
+                      {activeApp.category}
+                    </span>
+                    <span className={styles.platformBadge}>
+                      Deployed on {activeApp.platform}
+                    </span>
                   </div>
 
-                  <div className={styles.metricsGrid}>
-                    {activeApp.metrics.map((m, idx) => (
-                      <div key={idx} className={styles.metricItem}>
-                        <span className={styles.metricLabel}>{m.label}</span>
-                        <span className={styles.metricValue} style={{ color: activeApp.previewTheme.accent }}>
-                          {m.value}
-                        </span>
-                      </div>
+                  <h3 className={styles.appName}>{activeApp.name}</h3>
+                  <p className={styles.tagline}>{activeApp.tagline}</p>
+                  <p className={styles.description}>{activeApp.description}</p>
+
+                  {/* Key Features */}
+                  <div className={styles.featuresBlock}>
+                    <span className={styles.featureLabel}>Engineered Highlights:</span>
+                    <ul className={styles.featureList}>
+                      {activeApp.features.map((feat, idx) => (
+                        <li key={idx}>
+                          <span className={styles.checkIcon}>✓</span>
+                          {feat}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Tech Tags */}
+                  <div className={styles.techList}>
+                    {activeApp.techStack.map((tech, idx) => (
+                      <span key={idx} className={styles.techPill}>{tech}</span>
                     ))}
                   </div>
 
-                  <div className={styles.interactiveBox}>
-                    <div className={styles.boxHeader}>
-                      <Terminal size={14} />
-                      <span>Live Health Status</span>
+                  {/* Call-to-Action Buttons */}
+                  <div className={styles.actionButtons}>
+                    <a
+                      href={activeApp.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`btn btn-primary ${styles.launchBtn}`}
+                    >
+                      <Play size={15} fill="currentColor" /> Open Live Application
+                      <ArrowUpRight size={14} />
+                    </a>
+                    <a
+                      href={activeApp.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-outline"
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}
+                    >
+                      <FaGithub size={17} /> Source Code
+                    </a>
+                  </div>
+                </div>
+
+                {/* Metrics & Architecture Telemetry Visual */}
+                <div className={styles.previewCol}>
+                  <div className={styles.telemetryCard}>
+                    <div className={styles.telemetryHeader}>
+                      <Activity size={18} style={{ color: activeApp.previewTheme.accent }} />
+                      <span>Production Architecture Telemetry</span>
                     </div>
-                    <pre className={styles.terminalOutput}>
-                      <code>
+
+                    <div className={styles.metricsGrid}>
+                      {activeApp.metrics.map((m, idx) => (
+                        <div key={idx} className={styles.metricItem}>
+                          <span className={styles.metricLabel}>{m.label}</span>
+                          <span className={styles.metricValue} style={{ color: activeApp.previewTheme.accent }}>
+                            {m.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className={styles.interactiveBox}>
+                      <div className={styles.boxHeader}>
+                        <Terminal size={14} />
+                        <span>Live Health Status</span>
+                      </div>
+                      <pre className={styles.terminalOutput}>
+                        <code>
 {`> GET ${activeApp.liveUrl}
 > HTTP/2 200 OK
 > SSL: TLS_AES_256_GCM_SHA384
-> STATUS: HEALTHY (Latency < 85ms)
+> STATUS: HEALTHY (Latency < 75ms)
 > SERVICE: OPERATIONAL`}
-                      </code>
-                    </pre>
-                  </div>
+                        </code>
+                      </pre>
+                    </div>
 
-                  <div className={styles.tiltNotice}>
-                    <Layers size={14} />
-                    <span>Tip: Move cursor across screen to tilt 3D perspective</span>
+                    <div className={styles.tiltNotice}>
+                      <Layers size={13} />
+                      <span>Hover & tilt mouse to adjust 3D angle</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </AnimatePresence>
           </motion.div>
         </div>
       </div>
