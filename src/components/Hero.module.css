@@ -39,6 +39,22 @@
   }
 }
 
+/* Top Badges Row */
+.statusBadgesRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+  justify-content: center;
+}
+
+@media (min-width: 960px) {
+  .statusBadgesRow {
+    justify-content: flex-start;
+  }
+}
+
 /* Status Badge */
 .statusBadge {
   display: inline-flex;
@@ -51,8 +67,48 @@
   font-size: 0.82rem;
   font-weight: 600;
   color: #10b981;
-  margin-bottom: 1.25rem;
   backdrop-filter: blur(8px);
+}
+
+/* Exploring Badge */
+.exploringBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  background: rgba(14, 165, 233, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.exploringBadge:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(14, 165, 233, 0.14);
+}
+
+.exploringDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+.exploringLabel {
+  color: #94a3b8;
+  font-size: 0.78rem;
+}
+
+.exploringTech {
+  color: #38bdf8;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .pulseDot {

@@ -319,6 +319,11 @@ export const portfolioData: PortfolioData = {
   ],
   skills: [
     {
+      name: "Currently Exploring & Active R&D",
+      description: "Frontier deep-dives in cloud automation, container orchestration, and autonomous agent architectures",
+      skills: ["DevOps", "Agentic AI", "Kubernetes (K8s)", "CI/CD GitHub Actions", "FastMCP Protocol", "Multi-Agent Workflows", "Docker Compose / Swarm", "Tool-Calling LLMs", "IaC (Terraform Basics)", "Prometheus & Grafana"]
+    },
+    {
       name: "Backend Architecture & System Design",
       description: "Scalable microservices, asynchronous queues, and distributed system design (HLD/LLD)",
       skills: ["System Design (HLD & LLD)", "Node.js", "Express.js", "MERN Stack", "Apache Kafka", "Redis", "BullMQ", "Docker", "RESTful APIs", "Microservices", "Server-Sent Events (SSE)", "Socket.IO"]
@@ -343,7 +348,7 @@ export const portfolioData: PortfolioData = {
     paragraphs: [
       "I am a final-year undergraduate at the National Institute of Technology, Calicut (NIT Calicut). Although my formal degree path began in Civil Engineering, my true passion lies in backend architecture, system design, and scalable software systems — a discipline I have pursued through thousands of hours of self-directed study, open-source development, and rigorous engineering practice.",
       "My work centers on high-concurrency backend engineering, system design, and practical full-stack solutions. I specialize in Node.js, the MERN stack, and distributed event-driven systems: message queues with BullMQ and Kafka, isolated container execution with Judge0, real-time telemetry over SSE/WebSockets, and test-driven API development.",
-      "To date, I have solved 700+ Data Structures and Algorithms problems across LeetCode and GeeksForGeeks, built 5+ active production deployments, and authored test-driven backend systems with over 100 passing unit tests. I am actively seeking 2027 software engineering opportunities in backend infrastructure, system design, and applied AI."
+      "To date, I have solved 700+ Data Structures and Algorithms problems across LeetCode and GeeksForGeeks, built 5+ active production deployments, and authored test-driven backend systems with over 100 passing unit tests. Currently, I am actively diving deeper into DevOps (Kubernetes, CI/CD pipelines, container orchestration) and Agentic AI (multi-agent workflows, FastMCP protocol, tool-calling systems) while targeting full-time software engineering opportunities in backend infrastructure, system design, and applied AI."
     ]
   },
   education: [

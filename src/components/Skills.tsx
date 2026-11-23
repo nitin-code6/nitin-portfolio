@@ -34,18 +34,41 @@ export default function Skills() {
           whileInView="show"
           viewport={{ once: true, margin: "-40px" }}
         >
-          {skills.map((group, idx) => (
-            <motion.div key={idx} variants={item} className={styles.categoryCard}>
-              <h3 className={styles.categoryTitle}>{group.name}</h3>
-              <p className={styles.groupDesc}>{group.description}</p>
-              
-              <div className={styles.skillTags}>
-                {group.skills.map((skill, sIdx) => (
-                  <span key={sIdx} className={styles.tag}>{skill}</span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+          {skills.map((group, idx) => {
+            const isExploring = group.name.includes('Exploring');
+            return (
+              <motion.div
+                key={idx}
+                variants={item}
+                className={`${styles.categoryCard} ${isExploring ? styles.exploringCard : ''}`}
+              >
+                <div className={styles.cardHeaderRow}>
+                  <h3 className={styles.categoryTitle}>{group.name}</h3>
+                  {isExploring && (
+                    <span className={styles.exploringCardPill}>
+                      <span className={styles.cardPulseDot} />
+                      <span>Active R&amp;D</span>
+                    </span>
+                  )}
+                </div>
+                <p className={styles.groupDesc}>{group.description}</p>
+                
+                <div className={styles.skillTags}>
+                  {group.skills.map((skill, sIdx) => {
+                    const isHighlight = skill === 'DevOps' || skill === 'Agentic AI';
+                    return (
+                      <span
+                        key={sIdx}
+                        className={`${styles.tag} ${isHighlight ? styles.highlightTag : ''}`}
+                      >
+                        {skill}
+                      </span>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>

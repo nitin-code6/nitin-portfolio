@@ -67,12 +67,19 @@ export default function Hero() {
         >
           {/* Left Column: Headline, Pitch, Quick Tech & CTAs */}
           <motion.div variants={itemVariants} className={styles.infoCol}>
-            {/* Single verified badge */}
-            <div className={styles.statusBadge}>
-              <span className={styles.pulseDot} />
-              <span>{hero.statusBadge}</span>
-              <span className={styles.badgeDivider}>•</span>
-              <span className={styles.badgeLocation}>{hero.location}</span>
+            {/* Top Badges Row: Verified status + Current Exploration */}
+            <div className={styles.statusBadgesRow}>
+              <div className={styles.statusBadge}>
+                <span className={styles.pulseDot} />
+                <span>{hero.statusBadge}</span>
+                <span className={styles.badgeDivider}>•</span>
+                <span className={styles.badgeLocation}>{hero.location}</span>
+              </div>
+              <div className={styles.exploringBadge}>
+                <span className={styles.exploringDot} />
+                <span className={styles.exploringLabel}>Currently Exploring:</span>
+                <span className={styles.exploringTech}>DevOps &amp; Agentic AI</span>
+              </div>
             </div>
 
             <h1 className={styles.name}>
