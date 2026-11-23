@@ -303,8 +303,12 @@ export default function SystemDesign() {
                       onClick={() => setActiveStep(idx)}
                       className={`${styles.stepNode} ${isCurrent ? styles.stepNodeActive : ''}`}
                     >
-                      <span className={styles.stepNumber}>{idx + 1}</span>
+                      <div className={styles.stepNodeHeader}>
+                        <span className={styles.stepNumber}>Step {idx + 1}</span>
+                        {isCurrent && <span className={styles.activeDot} />}
+                      </div>
                       <span className={styles.stepNodeTitle}>{step.name.split('. ')[1] || step.name}</span>
+                      <span className={styles.stepTechMini}>{step.tech.split(' / ')[0]}</span>
                       <span className={styles.stepRole}>{step.role}</span>
                     </button>
                     {idx < activeSystem.flowSteps.length - 1 && (
@@ -335,7 +339,10 @@ export default function SystemDesign() {
                     </h4>
                   </div>
                   <div className={styles.invariantBox}>
-                    <span className={styles.invariantLabel}>Critical Invariant:</span>
+                    <div className={styles.invariantHeader}>
+                      <ShieldAlert size={14} className={styles.invariantIcon} />
+                      <span className={styles.invariantLabel}>Critical Invariant</span>
+                    </div>
                     <span className={styles.invariantText}>{activeSystem.flowSteps[activeStep].invariant}</span>
                   </div>
                 </div>

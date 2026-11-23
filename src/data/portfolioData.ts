@@ -96,8 +96,8 @@ export const portfolioData: PortfolioData = {
     },
     {
       label: "System Design",
-      value: "MERN & Node",
-      detail: "Microservices, Kafka & Redis Queues",
+      value: "Event-Driven",
+      detail: "Kafka, BullMQ & Node.js Microservices",
       link: "#system-design"
     }
   ],

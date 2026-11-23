@@ -359,21 +359,24 @@
 
 .proofValueRow {
   display: flex;
-  align-items: baseline;
-  gap: 0.55rem;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 0.25rem;
 }
 
 .proofValue {
-  font-size: 1.55rem;
+  font-size: 1.45rem;
   font-weight: 800;
   color: #fff;
   letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
 .proofLabel {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: #38bdf8;
+  letter-spacing: 0.01em;
 }
 
 .proofDetail {
