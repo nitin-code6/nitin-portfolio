@@ -1,71 +1,402 @@
 .footer {
-  border-top: 1px solid var(--glass-border);
-  background: var(--secondary);
-  padding: 4rem 0 2rem;
-  margin-top: 4rem;
+  position: relative;
+  background: linear-gradient(180deg, #050b14 0%, #02060f 100%);
+  color: #94a3b8;
+  padding: 4rem 1.5rem 2rem;
+  margin-top: 5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-bottom: 3rem;
+/* Subtle top hairline divider with center cyan highlight */
+.topDivider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.35) 50%, transparent 100%);
 }
 
-@media (min-width: 768px) {
-  .content {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* 4-column responsive grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
   }
 }
 
-.brand {
-  max-width: 400px;
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1.4fr 1fr 1.2fr 1.1fr;
+    gap: 2.5rem;
+  }
 }
 
-.logo {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+/* Brand Column */
+.brandCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.logoRow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
   margin-bottom: 1rem;
-  display: inline-block;
+}
+
+.codeLogo {
+  font-family: var(--font-mono, 'Courier New', monospace);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f8fafc;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.statusText {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #34d399;
+  letter-spacing: 0.02em;
+}
+
+.roleTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 0.4rem;
 }
 
 .bio {
-  color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: #94a3b8;
+  margin-bottom: 1.25rem;
 }
 
-.socialLinks {
+.telemetryCard {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 0.75rem 0.85rem;
   display: flex;
-  gap: 1.5rem;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.35rem;
 }
 
-.socialLinks a {
-  color: var(--text-muted);
-  background: var(--glass-bg);
-  padding: 0.75rem;
-  border-radius: 50%;
+.telemetryItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.76rem;
+  color: #cbd5e1;
+  font-family: var(--font-mono, monospace);
+}
+
+.telemetryIcon {
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+.socialGroup {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.socialBtn {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--glass-border);
+  color: #94a3b8;
   transition: all 0.2s ease;
 }
 
-.socialLinks a:hover {
-  color: #fff;
-  border-color: var(--primary);
-  background: rgba(99, 102, 241, 0.1);
-  transform: translateY(-3px);
+.socialBtn:hover {
+  background: rgba(14, 165, 233, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+  transform: translateY(-2px);
 }
 
-.bottom {
-  border-top: 1px solid var(--glass-border);
-  padding-top: 2rem;
-  text-align: center;
-  color: var(--text-muted);
+/* Nav & Section Column */
+.navCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.colHeader {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #f1f5f9;
+  margin-bottom: 1.25rem;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.86rem;
+  color: #94a3b8;
+  transition: all 0.2s ease;
+}
+
+.footerLink:hover {
+  color: #38bdf8;
+  transform: translateX(3px);
+}
+
+.linkBadge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+}
+
+.linkBadgeAccent {
+  font-size: 0.68rem;
+  font-weight: 600;
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+}
+
+/* Flagship Repo Links */
+.repoLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.75rem;
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.repoLink:hover {
+  background: rgba(15, 23, 42, 0.8);
+  border-color: rgba(56, 189, 248, 0.3);
+  transform: translateY(-1px);
+}
+
+.repoInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.repoTitle {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.repoDesc {
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.repoArrow {
+  color: #64748b;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.repoLink:hover .repoArrow {
+  color: #38bdf8;
+  transform: translate(2px, -2px);
+}
+
+.allReposLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #38bdf8;
+  margin-top: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.allReposLink:hover {
+  color: #7dd3fc;
+  text-decoration: underline;
+}
+
+/* Proof & Metric Column */
+.proofCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.metricsBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.metricItem {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 0.65rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.metricHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.metricIcon {
+  color: #38bdf8;
+}
+
+.metricVal {
   font-size: 0.85rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.metricSub {
+  font-size: 0.71rem;
+  color: #64748b;
+}
+
+/* Sub-Footer Bottom Bar */
+.bottomBar {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+  .bottomBar {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+}
+
+.bottomLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .bottomLeft {
+    text-align: left;
+  }
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.locationPill {
+  font-size: 0.73rem;
+  color: #475569;
+}
+
+.backToTopBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backToTopBtn:hover {
+  background: rgba(14, 165, 233, 0.15);
+  border-color: rgba(56, 189, 248, 0.35);
+  color: #38bdf8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
