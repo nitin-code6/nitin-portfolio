@@ -150,6 +150,63 @@
   }
 }
 
+.badgeRowWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 900px) {
+  .badgeRowWrapper {
+    justify-content: flex-start;
+  }
+}
+
+.greetingBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  backdrop-filter: blur(8px);
+}
+
+.waveHand {
+  display: inline-block;
+  animation: waveAnimation 2.2s infinite ease-in-out;
+  transform-origin: 70% 70%;
+}
+
+@keyframes waveAnimation {
+  0%, 100% { transform: rotate(0deg); }
+  20%, 60% { transform: rotate(14deg); }
+  40%, 80% { transform: rotate(-10deg); }
+}
+
+.liveIndicatorDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.statusText {
+  color: #10b981;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
 .academicBadge {
   display: inline-flex;
   align-items: center;
@@ -161,7 +218,6 @@
   font-size: 0.82rem;
   font-weight: 600;
   color: #38bdf8;
-  margin-bottom: 1rem;
   cursor: default;
 }
 

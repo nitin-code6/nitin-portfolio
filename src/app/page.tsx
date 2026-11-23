@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import SkillsMarquee from '@/components/SkillsMarquee';
 import Showcase3D from '@/components/Showcase3D';
 import SystemDesign from '@/components/SystemDesign';
 import FeaturedProjects from '@/components/FeaturedProjects';
@@ -18,6 +19,9 @@ export default function Home() {
       <main>
         {/* Hero Section */}
         <Hero />
+
+        {/* In-Demand Skills & Capabilities Infinite Marquee */}
+        <SkillsMarquee />
 
         {/* 3D Interactive Deployed Websites Showcase */}
         <Showcase3D />

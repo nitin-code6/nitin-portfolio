@@ -1,0 +1,117 @@
+.marqueeSection {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 0;
+  background: rgba(9, 14, 26, 0.45);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+/* Side gradient fades to hide sharp edges */
+.glowOverlayLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 100%;
+  background: linear-gradient(90deg, #080d1a 20%, transparent 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.glowOverlayRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 140px;
+  height: 100%;
+  background: linear-gradient(270deg, #080d1a 20%, transparent 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.trackWrapper {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+}
+
+.track {
+  display: flex;
+  gap: 1.15rem;
+  width: max-content;
+}
+
+.scrollLeft {
+  animation: scrollLeftLoop 35s linear infinite;
+}
+
+.scrollRight {
+  animation: scrollRightLoop 38s linear infinite;
+}
+
+.trackWrapper:hover .track {
+  animation-play-state: paused;
+}
+
+@keyframes scrollLeftLoop {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+@keyframes scrollRightLoop {
+  0% { transform: translateX(-33.333%); }
+  100% { transform: translateX(0); }
+}
+
+.skillCard {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 1.15rem;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.skillCard:hover {
+  background: rgba(30, 41, 59, 0.9);
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.2);
+}
+
+.iconBox {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.textWrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.skillName {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.skillCategory {
+  font-size: 0.72rem;
+  color: #64748b;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}

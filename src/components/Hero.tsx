@@ -1,4 +1,5 @@
 'use client';
+import { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Download, Mail, Play, Network, Sparkles, Code2, ArrowUpRight } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
@@ -8,6 +9,14 @@ import Canvas3D from './Canvas3D';
 import styles from './Hero.module.css';
 
 export default function Hero() {
+  const [greeting, setGreeting] = useState('Welcome!');
+
+  useEffect(() => {
+    const hour = new Date().getHours();
+    if (hour < 12) setGreeting('Good morning, welcome to my space!');
+    else if (hour < 18) setGreeting('Good afternoon, welcome to my space!');
+    else setGreeting('Good evening, welcome to my space!');
+  }, []);
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -90,14 +99,22 @@ export default function Hero() {
           
           {/* Info Area */}
           <motion.div variants={itemVariants} className={styles.infoContainer}>
-            <motion.div 
-              className={styles.academicBadge}
-              whileHover={{ scale: 1.03 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <Sparkles size={14} className={styles.sparkleIcon} />
-              <span>NIT Calicut • 700+ DSA Problems • Systems & AI</span>
-            </motion.div>
+            <div className={styles.badgeRowWrapper}>
+              <div className={styles.greetingBadge}>
+                <span className={styles.waveHand}>👋</span>
+                <span>{greeting}</span>
+                <span className={styles.liveIndicatorDot}></span>
+                <span className={styles.statusText}>Open to Roles</span>
+              </div>
+              <motion.div 
+                className={styles.academicBadge}
+                whileHover={{ scale: 1.03 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
+                <Sparkles size={14} className={styles.sparkleIcon} />
+                <span>NIT Calicut • 700+ DSA</span>
+              </motion.div>
+            </div>
 
             <h1 className={styles.name}>
               <span className={styles.whiteText}>Nitin</span> <span className="text-gradient">Kumar</span>
