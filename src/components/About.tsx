@@ -1,75 +1,74 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Code2, Server, Database, Cpu, Brain, Network } from 'lucide-react';
+import { Brain, Server, Database, Cpu } from 'lucide-react';
+import { portfolioData } from '@/data/portfolioData';
 import styles from './About.module.css';
 
 export default function About() {
-  const features = [
+  const { about } = portfolioData;
+
+  const highlights = [
     {
-      icon: <Brain size={24} />,
-      title: "Applied AI & RAG",
-      desc: "Architecting autonomous LLM agents, FastMCP server bridges, vector retrieval, and temporal neural networks."
+      icon: <Server size={22} />,
+      title: "Distributed Backends",
+      desc: "Asynchronous worker queues, message streaming (Kafka, BullMQ, Redis), and real-time SSE."
     },
     {
-      icon: <Server size={24} />,
-      title: "Distributed Backend",
-      desc: "Building high-concurrency event-driven microservices using Kafka, BullMQ, Redis, Node.js, and FastAPI."
+      icon: <Brain size={22} />,
+      title: "Applied AI Pipelines",
+      desc: "Production RAG, FastMCP agent servers, and LSTM-VAE time-series sequence models."
     },
     {
-      icon: <Database size={24} />,
-      title: "Database Internals",
-      desc: "Built a C++ relational storage engine with 4KB block paging and disk B+ Tree indexing from scratch."
+      icon: <Database size={22} />,
+      title: "Systems in C++",
+      desc: "Relational storage engine internals, buffer pool paging, and disk-backed B+ tree balancing."
     },
     {
-      icon: <Network size={24} />,
-      title: "Real-Time & Telemetry",
-      desc: "Full-duplex WebSockets, Server-Sent Events (SSE), and time-series battery health monitoring pipelines."
-    },
-    {
-      icon: <Code2 size={24} />,
-      title: "Low-Level Design (LLD)",
-      desc: "Clean modular architecture applying SOLID principles, Design Patterns (Strategy, Factory, Singleton) in C++."
-    },
-    {
-      icon: <Cpu size={24} />,
+      icon: <Cpu size={22} />,
       title: "Algorithmic Rigor",
-      desc: "Solved 700+ Data Structures and Algorithms problems across LeetCode & GeeksForGeeks (1700+ rating)."
+      desc: "700+ DSA problems solved across LeetCode & GeeksForGeeks (1700+ rating)."
     }
   ];
 
   return (
-    <section id="about" className={`section ${styles.aboutSection}`}>
+    <section id="about" className={`section ${styles.aboutSection}`} aria-label="About Me">
       <div className="container">
         <div className={styles.grid}>
+          {/* Text Content */}
           <motion.div 
             className={styles.textContent}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            <h2 className="sectionTitle">About <span className="text-gradient">Me</span></h2>
-            <p className={styles.paragraph}>
-              My journey into software engineering is driven by a deep fascination with how complex systems operate under the hood. As an engineer at the <strong>National Institute of Technology, Calicut (NIT Calicut)</strong>, I have paired fundamental computer science principles with high-stakes, production-level software development.
-            </p>
-            <p className={styles.paragraph}>
-              I don&apos;t just build surface-level web applications; I design complete, scalable systems. My engineering spans distributed message queues, isolated sandboxed execution pipelines, real-time logistics systems with live socket synchronizations, and low-level database storage engines built from first principles.
-            </p>
-            <p className={styles.paragraph}>
-              With <strong>4 production applications currently deployed</strong> (SupportDesk, ReelFinder AI, FerryFlow, and CPULab) and an active portfolio in applied Generative AI, RAG, and MCP, I thrive at the intersection of cutting-edge intelligence and bulletproof backend reliability.
-            </p>
+            <div className={styles.sectionPill}>
+              <span>Engineering Journey</span>
+            </div>
+            <h2 className={styles.heading}>
+              About <span className="text-gradient">Nitin Kumar</span>
+            </h2>
+
+            {about.paragraphs.map((p, idx) => (
+              <p key={idx} className={styles.paragraph}>
+                {p}
+              </p>
+            ))}
           </motion.div>
 
+          {/* Core Focus Highlights */}
           <motion.div 
             className={styles.featureGrid}
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
-            {features.map((feature, idx) => (
+            {highlights.map((h, idx) => (
               <div key={idx} className={styles.featureCard}>
-                <div className={styles.iconWrapper}>{feature.icon}</div>
-                <h4>{feature.title}</h4>
-                <p>{feature.desc}</p>
+                <div className={styles.iconWrapper}>{h.icon}</div>
+                <h3 className={styles.cardTitle}>{h.title}</h3>
+                <p className={styles.cardDesc}>{h.desc}</p>
               </div>
             ))}
           </motion.div>

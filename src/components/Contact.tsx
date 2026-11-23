@@ -1,102 +1,194 @@
 'use client';
-import { useState } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 import { motion } from 'framer-motion';
-import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, Mail, MapPin } from 'lucide-react';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import styles from './Contact.module.css';
 
 export default function Contact() {
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setStatus('loading');
-    
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      subject: formData.get('subject'),
-      message: formData.get('message'),
-    };
+    setErrorMessage('');
 
     try {
-      const response = await fetch('/api/contact', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData)
       });
 
-      if (response.ok) {
-        setStatus('success');
-        (e.target as HTMLFormElement).reset();
-      } else {
-        setStatus('error');
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to send message.');
       }
-    } catch (error) {
+
+      setStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (err: unknown) {
       setStatus('error');
+      setErrorMessage(err instanceof Error ? err.message : 'Something went wrong. Please reach out directly via email.');
     }
   };
 
   return (
-    <section id="contact" className={`section ${styles.contactSection}`}>
+    <section id="contact" className={`section ${styles.contactSection}`} aria-label="Contact Section">
       <div className="container">
         <div className={styles.header}>
           <h2 className="sectionTitle">Get In <span className="text-gradient">Touch</span></h2>
-          <p>I'm currently available for full-time opportunities and interesting projects.</p>
+          <p>Open to 2027 software engineering opportunities in backend infrastructure, distributed systems, and applied AI.</p>
         </div>
 
-        <motion.div 
-          className={styles.formContainer}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <form onSubmit={handleSubmit} className={styles.form}>
-            <div className={styles.inputGroup}>
-              <div className={styles.inputWrapper}>
-                <label htmlFor="name" className={styles.label}>Name</label>
-                <input type="text" id="name" name="name" required className={styles.input} />
+        <div className={styles.grid}>
+          {/* Contact Details */}
+          <motion.div 
+            className={styles.infoCol}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h3>Let&apos;s Build Something Resilient</h3>
+            <p className={styles.infoText}>
+              Whether you are looking for an engineer for high-concurrency systems, queue architectures, or practical AI tooling, I&apos;d love to connect.
+            </p>
+
+            <div className={styles.contactDetails}>
+              <div className={styles.contactItem}>
+                <div className={styles.iconBox}><Mail size={18} /></div>
+                <div>
+                  <span className={styles.itemLabel}>Email Directly</span>
+                  <a href="mailto:nitbit710@gmail.com" className={styles.itemVal}>nitbit710@gmail.com</a>
+                </div>
               </div>
-              <div className={styles.inputWrapper}>
-                <label htmlFor="email" className={styles.label}>Email</label>
-                <input type="email" id="email" name="email" required className={styles.input} />
+
+              <div className={styles.contactItem}>
+                <div className={styles.iconBox}><MapPin size={18} /></div>
+                <div>
+                  <span className={styles.itemLabel}>Location</span>
+                  <span className={styles.itemVal}>NIT Calicut, Kerala, India</span>
+                </div>
               </div>
-            </div>
-            
-            <div className={styles.inputWrapper}>
-              <label htmlFor="subject" className={styles.label}>Subject</label>
-              <input type="text" id="subject" name="subject" required className={styles.input} />
-            </div>
-            
-            <div className={styles.inputWrapper}>
-              <label htmlFor="message" className={styles.label}>Message</label>
-              <textarea id="message" name="message" rows={5} required className={styles.textarea}></textarea>
             </div>
 
-            <button 
-              type="submit" 
-              className={`btn btn-primary ${styles.submitBtn}`}
-              disabled={status === 'loading'}
-            >
-              {status === 'loading' ? 'Sending...' : 'Send Message'} 
-              {!status && <Send size={18} style={{ marginLeft: '0.5rem' }} />}
-            </button>
+            <div className={styles.socialStrip}>
+              <a href="https://github.com/nitin-code6" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className={styles.socialBtn}>
+                <FaGithub size={18} />
+              </a>
+              <a href="https://www.linkedin.com/in/nitbit07/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className={styles.socialBtn}>
+                <FaLinkedin size={18} />
+              </a>
+              <a href="https://x.com/Nitin_5432" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile" className={styles.socialBtn}>
+                <FaTwitter size={18} />
+              </a>
+            </div>
+          </motion.div>
 
-            {status === 'success' && (
-              <div className={styles.successMessage}>
-                <CheckCircle size={20} />
-                Message sent successfully! I'll get back to you soon.
+          {/* Form */}
+          <motion.div 
+            className={styles.formCol}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <div className={styles.inputRow}>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="name">Your Name</label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Jane Doe"
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="email">Your Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="jane@company.com"
+                  />
+                </div>
               </div>
-            )}
-            
-            {status === 'error' && (
-              <div className={styles.errorMessage}>
-                <AlertCircle size={20} />
-                Failed to send message. Please try again or email me directly.
+
+              <div className={styles.inputGroup}>
+                <label htmlFor="subject">Subject</label>
+                <input
+                  id="subject"
+                  name="subject"
+                  type="text"
+                  required
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="2027 Engineering Opportunities"
+                />
               </div>
-            )}
-          </form>
-        </motion.div>
+
+              <div className={styles.inputGroup}>
+                <label htmlFor="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  required
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell me about your team or project..."
+                />
+              </div>
+
+              {status === 'success' && (
+                <div className={styles.successMessage}>
+                  <CheckCircle2 size={18} />
+                  <span>Message sent successfully! I&apos;ll get back to you promptly.</span>
+                </div>
+              )}
+
+              {status === 'error' && (
+                <div className={styles.errorMessage}>
+                  <AlertCircle size={18} />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
+              <button 
+                type="submit" 
+                disabled={status === 'loading'}
+                className={`btn btn-primary ${styles.submitBtn}`}
+              >
+                {status === 'loading' ? 'Sending Message...' : (
+                  <>
+                    <Send size={15} style={{ marginRight: '0.45rem' }} /> Send Message
+                  </>
+                )}
+              </button>
+            </form>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

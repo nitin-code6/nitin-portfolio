@@ -1,61 +1,40 @@
 'use client';
-import { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
-import { Download, Mail, Play, Network, Sparkles, Code2, ArrowUpRight } from 'lucide-react';
+import { ArrowDown, Download, Mail } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
-import Canvas3D from './Canvas3D';
+import HeroSceneWrapper from './three/HeroSceneWrapper';
+import { portfolioData } from '@/data/portfolioData';
 import styles from './Hero.module.css';
 
 export default function Hero() {
-  const [greeting, setGreeting] = useState('Welcome!');
+  const { hero, proofStrip } = portfolioData;
 
-  useEffect(() => {
-    const hour = new Date().getHours();
-    if (hour < 12) setGreeting('Good morning, welcome to my space!');
-    else if (hour < 18) setGreeting('Good afternoon, welcome to my space!');
-    else setGreeting('Good evening, welcome to my space!');
-  }, []);
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0.05
       }
     }
   };
 
   const itemVariants: Variants = {
-    hidden: { y: 24, opacity: 0 },
+    hidden: { y: 18, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { type: 'spring', stiffness: 120, damping: 16 }
-    }
-  };
-
-  const floatingVariants: Variants = {
-    animate: {
-      y: [0, -6, 0],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: 'easeInOut'
-      }
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
     }
   };
 
   return (
-    <section className={styles.heroSection}>
-      {/* Ambient background glows */}
-      <div className={styles.ambientGlowPrimary}></div>
-      <div className={styles.ambientGlowSecondary}></div>
-      
-      {/* Interactive 3D Neural Constellation Canvas */}
-      <Canvas3D />
+    <section className={styles.heroSection} aria-label="Introduction">
+      {/* 3D Distributed Systems R3F Interactive Scene */}
+      <HeroSceneWrapper />
 
       <div className={`container ${styles.container}`}>
         <motion.div 
@@ -64,97 +43,99 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
         >
-          {/* Avatar Area with Animated Gradient Ring */}
+          {/* Avatar Column */}
           <motion.div variants={itemVariants} className={styles.avatarContainer}>
-            <motion.div 
-              className={styles.avatarWrapper}
-              variants={floatingVariants}
-              animate="animate"
-            >
-              {/* Rotating iridescent glowing border */}
-              <div className={styles.avatarGlowRing}></div>
-              
+            <div className={styles.avatarWrapper}>
+              <div className={styles.avatarGlowRing} />
               <div className={styles.avatarInner}>
                 <Image 
                   src="/profile.png" 
-                  alt="Nitin Kumar" 
+                  alt="Nitin Kumar portrait" 
                   fill
-                  sizes="(max-width: 768px) 210px, 290px"
+                  sizes="(max-width: 768px) 180px, 240px"
                   style={{ objectFit: 'cover' }}
                   priority
                 />
               </div>
-
-              {/* Floating Status Pill */}
-              <motion.div 
-                className={styles.floatingStatusPill}
-                animate={{ y: [0, -4, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                <span className={styles.pulseDot}></span>
-                <span>4 Production Apps Live</span>
-              </motion.div>
-            </motion.div>
+            </div>
           </motion.div>
           
-          {/* Info Area */}
+          {/* Main Info Column */}
           <motion.div variants={itemVariants} className={styles.infoContainer}>
-            <div className={styles.badgeRowWrapper}>
-              <div className={styles.greetingBadge}>
-                <span className={styles.waveHand}>👋</span>
-                <span>{greeting}</span>
-                <span className={styles.liveIndicatorDot}></span>
-                <span className={styles.statusText}>Open to Roles</span>
-              </div>
-              <motion.div 
-                className={styles.academicBadge}
-                whileHover={{ scale: 1.03 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                <Sparkles size={14} className={styles.sparkleIcon} />
-                <span>NIT Calicut • 700+ DSA</span>
-              </motion.div>
+            {/* Single verified badge as requested */}
+            <div className={styles.statusBadge}>
+              <span className={styles.pulseDot} />
+              <span>{hero.statusBadge}</span>
+              <span className={styles.badgeDivider}>•</span>
+              <span className={styles.badgeLocation}>{hero.location}</span>
             </div>
 
             <h1 className={styles.name}>
               <span className={styles.whiteText}>Nitin</span> <span className="text-gradient">Kumar</span>
             </h1>
-            <h2 className={styles.title}>Full-Stack, Applied AI & Systems Engineer</h2>
+
+            <h2 className={styles.role}>{hero.role}</h2>
             
-            <p className={styles.bio}>
-              I architect high-throughput distributed backends, applied AI pipelines (RAG, multi-agent workflows, FastMCP), and core systems in C++ (database engines & B+ trees). Passionate about turning complex distributed engineering challenges into resilient, production-ready systems.
+            <p className={styles.pitch}>
+              {hero.pitch}
             </p>
             
-            {/* Socials & Profiles */}
-            <div className={styles.socialLinks}>
-              <a href="https://github.com/nitin-code6" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className={styles.socialBtn}>
-                <FaGithub size={20} />
-              </a>
-              <a href="https://www.linkedin.com/in/nitbit07/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={styles.socialBtn}>
-                <FaLinkedin size={20} />
-              </a>
-              <a href="https://x.com/Nitin_5432" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className={styles.socialBtn}>
-                <FaTwitter size={20} />
-              </a>
-              <a href="mailto:nitbit710@gmail.com" aria-label="Email" className={styles.socialBtn}>
-                <Mail size={20} />
-              </a>
-            </div>
-            
-            {/* CTAs */}
-            <div className={styles.ctaGroup}>
-              <Link href="#showcase" className={`btn btn-primary ${styles.primaryCta}`}>
-                <Play size={15} fill="currentColor" /> 3D Live Deployments
-                <ArrowUpRight size={14} />
-              </Link>
-              <Link href="#system-design" className="btn btn-outline">
-                <Network size={16} /> Systems Architecture
-              </Link>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
-                <Download size={15} /> Resume
-              </a>
+            {/* Direct CTAs & Socials (all visible above fold) */}
+            <div className={styles.actionsRow}>
+              <div className={styles.ctaGroup}>
+                <Link href="#projects" className={`btn btn-primary ${styles.primaryCta}`}>
+                  View Projects <ArrowDown size={15} />
+                </Link>
+                <a 
+                  href="/resume.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn btn-outline"
+                >
+                  <Download size={15} style={{ marginRight: '0.4rem' }} /> Download Resume
+                </a>
+              </div>
+
+              <div className={styles.socialLinks} aria-label="Social Profiles">
+                <a href={hero.socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className={styles.socialBtn}>
+                  <FaGithub size={18} />
+                </a>
+                <a href={hero.socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className={styles.socialBtn}>
+                  <FaLinkedin size={18} />
+                </a>
+                <a href={hero.socials.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile" className={styles.socialBtn}>
+                  <FaTwitter size={18} />
+                </a>
+                <a href={hero.socials.email} aria-label="Send Email" className={styles.socialBtn}>
+                  <Mail size={18} />
+                </a>
+              </div>
             </div>
           </motion.div>
+        </motion.div>
+
+        {/* Verifiable Trust / Proof Strip */}
+        <motion.div 
+          className={styles.proofStrip}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
+          {proofStrip.map((item, idx) => (
+            <a 
+              key={idx} 
+              href={item.link || '#'} 
+              className={styles.proofItem}
+              target={item.link?.startsWith('http') ? '_blank' : '_self'}
+              rel="noopener noreferrer"
+            >
+              <div className={styles.proofValueRow}>
+                <span className={styles.proofValue}>{item.value}</span>
+                <span className={styles.proofLabel}>{item.label}</span>
+              </div>
+              <span className={styles.proofDetail}>{item.detail}</span>
+            </a>
+          ))}
         </motion.div>
       </div>
     </section>

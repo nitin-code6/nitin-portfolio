@@ -1,27 +1,60 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
+export const viewport: Viewport = {
+  themeColor: "#080d1a",
+  width: "device-width",
+  initialScale: 1
+};
+
 export const metadata: Metadata = {
-  title: "Nitin Kumar | Full-Stack Software Developer",
-  description: "Portfolio of Nitin Kumar, an engineering student at NIT Calicut and Full-Stack Software Developer building scalable applications and systems-oriented projects.",
-  keywords: ["Nitin Kumar", "Software Engineer", "Full-Stack Developer", "NIT Calicut", "CodeArena", "React", "Node.js"],
-  authors: [{ name: "Nitin Kumar" }],
+  metadataBase: new URL("https://nitincode.vercel.app"),
+  title: "Nitin Kumar | Backend & AI Systems Engineer",
+  description: "Portfolio of Nitin Kumar, an engineering student at NIT Calicut building distributed backends and AI pipelines, from Kafka-powered code judges to a B+ tree database engine in C++.",
+  keywords: [
+    "Nitin Kumar",
+    "Backend Engineer",
+    "Distributed Systems",
+    "Applied AI",
+    "NIT Calicut",
+    "Kafka",
+    "BullMQ",
+    "B+ Tree",
+    "CodeArena",
+    "FastAPI",
+    "React",
+    "C++"
+  ],
+  authors: [{ name: "Nitin Kumar", url: "https://github.com/nitin-code6" }],
+  creator: "Nitin Kumar",
   openGraph: {
-    title: "Nitin Kumar | Full-Stack Software Developer",
-    description: "Portfolio of Nitin Kumar, an engineering student at NIT Calicut and Full-Stack Software Developer building scalable applications and systems-oriented projects.",
+    title: "Nitin Kumar | Backend & AI Systems Engineer",
+    description: "I build distributed backends and AI pipelines, from Kafka-powered code judges to a B+ tree database engine in C++.",
+    url: "https://nitincode.vercel.app",
+    siteName: "Nitin Kumar Portfolio",
+    locale: "en_US",
     type: "website",
-    url: "https://nitin-portfolio.vercel.app", // Placeholder, will update if actual domain known
-    siteName: "Nitin Kumar Portfolio"
+    images: [
+      {
+        url: "/profile.png",
+        width: 800,
+        height: 800,
+        alt: "Nitin Kumar — Backend & AI Systems Engineer"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nitin Kumar | Full-Stack Software Developer",
-    description: "Portfolio of Nitin Kumar, Full-Stack Software Developer building scalable applications.",
-    creator: "@Nitin_5432"
+    title: "Nitin Kumar | Backend & AI Systems Engineer",
+    description: "I build distributed backends and AI pipelines, from Kafka-powered code judges to a B+ tree database engine in C++.",
+    creator: "@Nitin_5432",
+    images: ["/profile.png"]
+  },
+  robots: {
+    index: true,
+    follow: true
   }
 };
-
-import Chatbot from '@/components/Chatbot';
 
 export default function RootLayout({
   children,
@@ -32,7 +65,6 @@ export default function RootLayout({
     <html lang="en" style={{ scrollBehavior: 'smooth' }}>
       <body>
         {children}
-        <Chatbot />
       </body>
     </html>
   );

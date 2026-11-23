@@ -66,7 +66,7 @@ export async function POST(req: Request) {
     });
 
     // Format history for Gemini API
-    const formattedHistory = (history || []).map((msg: any) => ({
+    const formattedHistory = (history || []).map((msg: { role: string; content: string }) => ({
       role: msg.role === 'user' ? 'user' : 'model',
       parts: [{ text: msg.content }]
     }));
@@ -89,7 +89,7 @@ export async function POST(req: Request) {
       headers: { 'Content-Type': 'application/json' }
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Chat API Error:", error);
     return new Response(JSON.stringify({ error: "Failed to process chat request." }), {
       status: 500,

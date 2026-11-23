@@ -1,5 +1,4 @@
 'use client';
-import { motion } from 'framer-motion';
 import { 
   Sparkles, 
   Cpu, 
@@ -10,14 +9,15 @@ import {
   Zap, 
   Code2, 
   Flame,
-  ShieldCheck
+  ShieldCheck,
+  LucideIcon
 } from 'lucide-react';
 import styles from './SkillsMarquee.module.css';
 
 interface SkillPill {
   name: string;
   category: string;
-  icon: any;
+  icon: LucideIcon;
   color: string;
 }
 

@@ -2,7 +2,19 @@ import { Star, GitFork, ExternalLink } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import styles from './FeaturedProjects.module.css';
 
-async function getGithubRepos() {
+interface GithubRepo {
+  id: number;
+  name: string;
+  description: string | null;
+  fork: boolean;
+  html_url: string;
+  homepage: string | null;
+  language: string | null;
+  stargazers_count: number;
+  forks_count: number;
+}
+
+async function getGithubRepos(): Promise<GithubRepo[]> {
   try {
     const res = await fetch('https://api.github.com/users/nitin-code6/repos?sort=updated&per_page=20', {
       next: { revalidate: 3600 },
@@ -37,7 +49,7 @@ async function getGithubRepos() {
     ];
 
     return repos
-      .filter((repo: any) => !repo.fork && !featuredNames.includes(repo.name) && repo.description)
+      .filter((repo: GithubRepo) => !repo.fork && !featuredNames.includes(repo.name) && repo.description)
       .slice(0, 6);
   } catch (error) {
     console.error('Error fetching GitHub repos:', error);
@@ -56,7 +68,7 @@ export default async function GithubProjects() {
     <div style={{ marginTop: '5rem' }}>
       <h3 className={styles.subTitle}>More Open Source & Systems Work</h3>
       <div style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-        {repos.map((repo: any) => (
+        {repos.map((repo: GithubRepo) => (
           <div key={repo.id} className={styles.projectCard} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column' }}>
             <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className={styles.cardLink} aria-label={`View ${repo.name}`} />
             <div className={styles.cardHeader}>

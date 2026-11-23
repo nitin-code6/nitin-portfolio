@@ -1,10 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import SkillsMarquee from '@/components/SkillsMarquee';
-import Showcase3D from '@/components/Showcase3D';
+import UnifiedProjectsCarousel from '@/components/UnifiedProjectsCarousel';
 import SystemDesign from '@/components/SystemDesign';
-import FeaturedProjects from '@/components/FeaturedProjects';
-import GithubProjects from '@/components/GithubProjects';
 import Skills from '@/components/Skills';
 import About from '@/components/About';
 import Experience from '@/components/Experience';
@@ -16,39 +13,26 @@ export default function Home() {
     <>
       <Navbar />
       
-      <main>
-        {/* Hero Section */}
+      <main id="main-content" tabIndex={-1}>
+        {/* 1. Recruiter-Focused Hero with R3F 3D Distributed Systems Scene */}
         <Hero />
 
-        {/* In-Demand Skills & Capabilities Infinite Marquee */}
-        <SkillsMarquee />
+        {/* 2. Unified Swipeable Projects Carousel (No duplicates) */}
+        <UnifiedProjectsCarousel />
 
-        {/* 3D Interactive Deployed Websites Showcase */}
-        <Showcase3D />
-
-        {/* System Design & Core Architecture Blueprints */}
+        {/* 3. Deep-Dive Systems Architecture Blueprints */}
         <SystemDesign />
-        
-        {/* Featured Projects & Open Source Repositories */}
-        <section id="projects" className="section">
-          <div className="container">
-            <FeaturedProjects />
-            
-            {/* Dynamic GitHub repos */}
-            <GithubProjects />
-          </div>
-        </section>
 
-        {/* Technical Skills & Arsenal */}
+        {/* 4. Grouped Technical Skills (Systems, Distributed, AI, Storage) */}
         <Skills />
 
-        {/* About Nitin Kumar */}
+        {/* 5. Honest Engineering Story (3 paragraphs) */}
         <About />
 
-        {/* Experience & Education */}
+        {/* 6. Education & Work Experience */}
         <Experience />
 
-        {/* Contact Form */}
+        {/* 7. Contact Form & Direct Channels */}
         <Contact />
       </main>
 

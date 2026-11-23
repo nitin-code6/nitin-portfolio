@@ -1,7 +1,7 @@
 'use client';
 import { useState, useRef, MouseEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Sparkles, Terminal, Activity, Layers, ShieldCheck, Play, ArrowUpRight } from 'lucide-react';
+import { Sparkles, Terminal, Activity, Layers, ShieldCheck, Play, ArrowUpRight } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import styles from './Showcase3D.module.css';
 

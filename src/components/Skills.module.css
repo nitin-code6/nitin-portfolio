@@ -46,14 +46,18 @@
 }
 
 .categoryTitle {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.35rem;
   color: #fff;
   letter-spacing: -0.01em;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+}
+
+.groupDesc {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 1.25rem;
+  line-height: 1.4;
 }
 
 .skillTags {
