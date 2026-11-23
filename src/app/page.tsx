@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import TechLogosStrip from '@/components/TechLogosStrip';
 import UnifiedProjectsCarousel from '@/components/UnifiedProjectsCarousel';
 import SystemDesign from '@/components/SystemDesign';
 import Skills from '@/components/Skills';
@@ -17,7 +18,10 @@ export default function Home() {
         {/* 1. Recruiter-Focused Hero with R3F 3D Distributed Systems Scene */}
         <Hero />
 
-        {/* 2. Unified Swipeable Projects Carousel (No duplicates) */}
+        {/* Clean Tech Logos Row */}
+        <TechLogosStrip />
+
+        {/* 2. Unified Swipeable Projects Carousel */}
         <UnifiedProjectsCarousel />
 
         {/* 3. Deep-Dive Systems Architecture Blueprints */}
