@@ -1,4 +1,5 @@
 'use client';
+import { useState, useRef } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { ArrowDown, Mail, Code2, ShieldCheck, Server, Network, Layers } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
@@ -12,6 +13,23 @@ const proofIcons = [Code2, ShieldCheck, Server, Network];
 
 export default function Hero() {
   const { hero, proofStrip } = portfolioData;
+  const [cardTilt, setCardTilt] = useState({ rotX: 0, rotY: 0 });
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setCardTilt({
+      rotX: -((y - rect.height / 2) / (rect.height / 2)) * 14,
+      rotY: ((x - rect.width / 2) / (rect.width / 2)) * 16,
+    });
+  };
+
+  const handleCardMouseLeave = () => {
+    setCardTilt({ rotX: 0, rotY: 0 });
+  };
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -107,9 +125,18 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right Column: Sleek Glassmorphic Profile Card */}
+          {/* Right Column: Interactive 3D Glassmorphic Profile Card */}
           <motion.div variants={itemVariants} className={styles.profileCardCol}>
-            <div className={styles.profileCard}>
+            <div 
+              ref={cardRef}
+              className={styles.profileCard}
+              onMouseMove={handleCardMouseMove}
+              onMouseLeave={handleCardMouseLeave}
+              style={{
+                transform: `perspective(1000px) rotateX(${cardTilt.rotX}deg) rotateY(${cardTilt.rotY}deg)`,
+                transition: cardTilt.rotX === 0 ? 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)' : 'transform 0.08s ease-out'
+              }}
+            >
               <div className={styles.cardGlow} />
               <div className={styles.portraitWrapper}>
                 <Image 
@@ -120,6 +147,8 @@ export default function Hero() {
                   style={{ objectFit: 'cover' }}
                   priority
                 />
+                {/* 3D Vignette overlay to blend indoor portrait with dark glass theme */}
+                <div className={styles.portraitVignette} />
               </div>
 
               {/* Floating Meta Tag: Academic */}
