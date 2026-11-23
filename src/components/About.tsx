@@ -1,29 +1,39 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Code2, Server, Database, Cpu } from 'lucide-react';
+import { Code2, Server, Database, Cpu, Brain, Network } from 'lucide-react';
 import styles from './About.module.css';
 
 export default function About() {
   const features = [
     {
+      icon: <Brain size={24} />,
+      title: "Applied AI & RAG",
+      desc: "Architecting autonomous LLM agents, FastMCP server bridges, vector retrieval, and temporal neural networks."
+    },
+    {
       icon: <Server size={24} />,
-      title: "Backend Engineering",
-      desc: "Building scalable APIs and microservices using Node.js, Express, and message queues."
+      title: "Distributed Backend",
+      desc: "Building high-concurrency event-driven microservices using Kafka, BullMQ, Redis, Node.js, and FastAPI."
     },
     {
       icon: <Database size={24} />,
-      title: "Database Design",
-      desc: "Structuring complex data in MongoDB, MySQL, and optimizing caching with Redis."
+      title: "Database Internals",
+      desc: "Built a C++ relational storage engine with 4KB block paging and disk B+ Tree indexing from scratch."
     },
     {
-      icon: <Cpu size={24} />,
-      title: "System Architecture",
-      desc: "Designing asynchronous, high-throughput systems capable of handling concurrent loads."
+      icon: <Network size={24} />,
+      title: "Real-Time & Telemetry",
+      desc: "Full-duplex WebSockets, Server-Sent Events (SSE), and time-series battery health monitoring pipelines."
     },
     {
       icon: <Code2 size={24} />,
-      title: "Core Fundamentals",
-      desc: "Strong grasp of Data Structures, Algorithms, Object-Oriented Programming, and DBMS."
+      title: "Low-Level Design (LLD)",
+      desc: "Clean modular architecture applying SOLID principles, Design Patterns (Strategy, Factory, Singleton) in C++."
+    },
+    {
+      icon: <Cpu size={24} />,
+      title: "Algorithmic Rigor",
+      desc: "Solved 700+ Data Structures and Algorithms problems across LeetCode & GeeksForGeeks (1700+ rating)."
     }
   ];
 
@@ -39,13 +49,13 @@ export default function About() {
           >
             <h2 className="sectionTitle">About <span className="text-gradient">Me</span></h2>
             <p className={styles.paragraph}>
-              My journey into software engineering is driven by a deep fascination with how complex systems operate under the hood. As a student at the National Institute of Technology, Calicut, I've spent my time mastering both the theoretical foundations of Computer Science and the practical application of modern web technologies.
+              My journey into software engineering is driven by a deep fascination with how complex systems operate under the hood. As an engineer at the <strong>National Institute of Technology, Calicut (NIT Calicut)</strong>, I have paired fundamental computer science principles with high-stakes, production-level software development.
             </p>
             <p className={styles.paragraph}>
-              I don't just build websites; I build systems. My focus is on backend architecture, real-time data processing, and creating scalable infrastructure. Whether it's architecting a robust coding platform with background job queues or designing real-time operational systems, I care deeply about performance, reliability, and clean code.
+              I don&apos;t just build surface-level web applications; I design complete, scalable systems. My engineering spans distributed message queues, isolated sandboxed execution pipelines, real-time logistics systems with live socket synchronizations, and low-level database storage engines built from first principles.
             </p>
             <p className={styles.paragraph}>
-              I'm constantly expanding my toolkit. Recently, I've been diving deep into Generative AI integration, exploring LLMs, RAG architectures, and embeddings to build smarter, more capable applications.
+              With <strong>4 production applications currently deployed</strong> (SupportDesk, ReelFinder AI, FerryFlow, and CPULab) and an active portfolio in applied Generative AI, RAG, and MCP, I thrive at the intersection of cutting-edge intelligence and bulletproof backend reliability.
             </p>
           </motion.div>
 

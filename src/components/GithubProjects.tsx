@@ -1,14 +1,16 @@
 import { Star, GitFork, ExternalLink } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
-import styles from './FeaturedProjects.module.css'; // We'll share some styles but override specifics
+import styles from './FeaturedProjects.module.css';
 
 async function getGithubRepos() {
   try {
-    const res = await fetch('https://api.github.com/users/nitin-code6/repos?sort=updated&per_page=10', {
+    const res = await fetch('https://api.github.com/users/nitin-code6/repos?sort=updated&per_page=20', {
       next: { revalidate: 3600 },
       headers: process.env.GITHUB_TOKEN ? {
         Authorization: `token ${process.env.GITHUB_TOKEN}`
-      } : {}
+      } : {
+        'User-Agent': 'Mozilla/5.0'
+      }
     });
 
     if (!res.ok) {
@@ -18,8 +20,22 @@ async function getGithubRepos() {
 
     const repos = await res.json();
     
-    // Filter out forks, already featured projects, and ones with no description
-    const featuredNames = ['CodeArena', 'Deep-Packet-Inspection', 'FerryFlow', 'nitin-portfolio'];
+    // Filter out forks, already featured projects, profile repo, and ones with no description
+    const featuredNames = [
+      'SupportDesk',
+      'reelfinder-ai',
+      'PromoFinder',
+      'FerryFlow',
+      'ferryflow',
+      'OS-VISUALIZER',
+      'CodeArena',
+      'codearena',
+      'BatteryLife-AI',
+      'novadb-engine',
+      'nitin-portfolio',
+      'nitin-code6'
+    ];
+
     return repos
       .filter((repo: any) => !repo.fork && !featuredNames.includes(repo.name) && repo.description)
       .slice(0, 6);
@@ -38,7 +54,7 @@ export default async function GithubProjects() {
 
   return (
     <div style={{ marginTop: '5rem' }}>
-      <h3 className={styles.subTitle}>Recent Open Source</h3>
+      <h3 className={styles.subTitle}>More Open Source & Systems Work</h3>
       <div style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
         {repos.map((repo: any) => (
           <div key={repo.id} className={styles.projectCard} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column' }}>

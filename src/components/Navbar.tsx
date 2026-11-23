@@ -17,10 +17,12 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Experience', href: '#experience' },
+    { name: '3D Live Apps', href: '#showcase' },
+    { name: 'System Design', href: '#system-design' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'About', href: '#about' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -38,7 +40,7 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>
+          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}>
             Resume
           </a>
         </nav>

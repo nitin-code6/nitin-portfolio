@@ -1,0 +1,393 @@
+.systemSection {
+  position: relative;
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+}
+
+.header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+}
+
+.sectionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #818cf8;
+  margin-bottom: 1.25rem;
+}
+
+.badgeIcon {
+  color: #818cf8;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* System Tabs */
+.systemTabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sysTabBtn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.4rem;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+
+.sysTabBtn:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+.sysTabActive {
+  background: rgba(99, 102, 241, 0.15) !important;
+  border-color: rgba(99, 102, 241, 0.5) !important;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.2);
+}
+
+.tabIconWrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #818cf8;
+  flex-shrink: 0;
+}
+
+.tabTextCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tabHeading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.tabBadge {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* Blueprint Card */
+.blueprintCard {
+  background: #090e1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(99, 102, 241, 0.1);
+}
+
+@media (max-width: 768px) {
+  .blueprintCard {
+    padding: 1.5rem;
+  }
+}
+
+/* Problem & Solution Banner */
+.problemBanner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 850px) {
+  .problemBanner {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.labelMuted {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  margin-bottom: 0.5rem;
+}
+
+.alertIcon { color: #f59e0b; }
+.checkIcon { color: #10b981; }
+
+.problemText {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.solutionText {
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Pipeline Flow */
+.pipelineArea {
+  margin-bottom: 2.5rem;
+}
+
+.pipelineHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.pipelineTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.stepCounter {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.flowTrack {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stepNodeContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.stepNode {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.85rem 1.2rem;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 170px;
+}
+
+.stepNode:hover {
+  background: rgba(30, 41, 59, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.stepNodeActive {
+  background: rgba(14, 165, 233, 0.15) !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+}
+
+.stepNumber {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 0.2rem;
+}
+
+.stepNodeTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.stepRole {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.flowArrow {
+  color: #475569;
+}
+
+/* Step Detail Box */
+.stepDetailCard {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.stepDetailTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.stepTechBadge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  margin-bottom: 0.4rem;
+}
+
+.stepDetailName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.invariantBox {
+  background: rgba(2, 6, 23, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+}
+
+.invariantLabel {
+  display: block;
+  font-size: 0.7rem;
+  color: #f59e0b;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.invariantText {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  font-family: monospace;
+}
+
+.stepDetailDesc {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Tradeoffs Grid */
+.tradeoffGrid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 900px) {
+  .tradeoffGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.colHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 1.25rem;
+}
+
+.tradeoffList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tradeoffItem {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.tradeoffDecision { color: #f8fafc; }
+.tradeoffReason { color: #94a3b8; }
+.tradeoffRejected { color: #f87171; }
+
+.resilienceList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.resilienceItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 0.85rem;
+}
+
+.resilienceIcon {
+  color: #10b981;
+  flex-shrink: 0;
+  margin-top: 2px;
+}

@@ -4,32 +4,36 @@ import styles from './Skills.module.css';
 
 const skillCategories = [
   {
-    title: "Programming",
-    skills: ["C++", "JavaScript", "TypeScript"]
+    title: "Programming Languages",
+    skills: ["C++", "C", "Python", "TypeScript", "JavaScript", "SQL"]
   },
   {
-    title: "Frontend",
-    skills: ["React.js", "Next.js", "HTML", "CSS"]
+    title: "Applied AI, LLMs & RAG",
+    skills: ["RAG Pipelines", "FastMCP", "LangChain", "Vector Search", "Embeddings", "Agentic AI", "PyTorch", "LSTM-VAE"]
   },
   {
-    title: "Backend",
-    skills: ["Node.js", "Express.js", "REST APIs"]
+    title: "Backend & Distributed Systems",
+    skills: ["Node.js", "Express.js", "FastAPI", "Apache Kafka", "BullMQ", "Redis", "Socket.IO", "Server-Sent Events (SSE)", "REST APIs"]
   },
   {
-    title: "Databases & Messaging",
-    skills: ["MongoDB", "MySQL", "Redis", "Kafka", "BullMQ"]
+    title: "Systems & Low-Level Design",
+    skills: ["B+ Tree Storage", "Buffer Pool Paging", "SOLID Principles", "Strategy Pattern", "Factory Pattern", "Singleton Pattern", "Object-Oriented Design (OOD)"]
   },
   {
-    title: "AI & Generative AI",
-    skills: ["LLM Fundamentals", "Prompt Engineering", "LLM APIs", "RAG Concepts", "Embeddings"]
+    title: "Databases & Storage",
+    skills: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "SQLite", "Block-Level Disk Storage"]
   },
   {
-    title: "System Design & DevOps",
-    skills: ["API Design", "Caching", "Scalability", "Git/GitHub", "Docker", "Linux"]
+    title: "Frontend Architecture",
+    skills: ["React 19 / 18", "Next.js (App Router)", "TypeScript", "Tailwind CSS", "Framer Motion", "CSS Modules", "Redux Toolkit"]
   },
   {
-    title: "Core CS",
-    skills: ["Data Structures & Algorithms", "OOP", "DBMS", "Operating Systems"]
+    title: "Cloud, DevOps & Tooling",
+    skills: ["Docker", "Linux CLI", "Git & GitHub", "Render PaaS", "Netlify", "Vercel", "PyTest", "Jest"]
+  },
+  {
+    title: "Core Computer Science",
+    skills: ["700+ DSA Solved", "Database Management Systems", "Operating Systems Internals", "Computer Networks", "Concurrency & Multithreading"]
   }
 ];
 
@@ -51,8 +55,8 @@ export default function Skills() {
     <section id="skills" className={`section ${styles.skillsSection}`}>
       <div className="container">
         <div className={styles.header}>
-          <h2 className="sectionTitle">Technical <span className="text-gradient">Skills</span></h2>
-          <p>Technologies and concepts I work with to build scalable systems.</p>
+          <h2 className="sectionTitle">Technical <span className="text-gradient">Arsenal</span></h2>
+          <p>Technologies, distributed frameworks, and systems engineering concepts I work with.</p>
         </div>
 
         <motion.div 

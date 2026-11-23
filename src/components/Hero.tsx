@@ -1,6 +1,6 @@
 'use client';
 import { motion, Variants } from 'framer-motion';
-import { ArrowRight, Download, Mail } from 'lucide-react';
+import { ArrowRight, Download, Mail, Play, Network, Sparkles } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -48,16 +48,49 @@ export default function Hero() {
                 priority
               />
             </div>
+            {/* Quick Stat Pill */}
+            <div style={{
+              marginTop: '1rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              background: 'rgba(16, 185, 129, 0.1)',
+              border: '1px solid rgba(16, 185, 129, 0.3)',
+              borderRadius: '9999px',
+              padding: '0.35rem 0.85rem',
+              fontSize: '0.8rem',
+              color: '#10b981',
+              fontWeight: 600
+            }}>
+              <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#10b981', boxShadow: '0 0 6px #10b981' }}></span>
+              4 Live Production Deployments
+            </div>
           </motion.div>
           
           {/* Info Area */}
           <motion.div variants={itemVariants} className={styles.infoContainer}>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              padding: '0.3rem 0.75rem',
+              borderRadius: '9999px',
+              background: 'rgba(14, 165, 233, 0.1)',
+              border: '1px solid rgba(14, 165, 233, 0.25)',
+              fontSize: '0.8rem',
+              fontWeight: 600,
+              color: '#38bdf8',
+              marginBottom: '0.75rem'
+            }}>
+              <Sparkles size={13} /> NIT Calicut • 700+ DSA Problems Solved
+            </div>
+
             <h1 className={styles.name}>
               <span style={{ color: '#fff' }}>Nitin</span> <span className="text-gradient">Kumar</span>
             </h1>
-            <h2 className={styles.title}>Full-Stack Software Developer</h2>
+            <h2 className={styles.title}>Full-Stack, Applied AI & Systems Engineer</h2>
             <p className={styles.bio}>
-              I build scalable applications and systems-oriented projects. Currently pursuing my B.Tech at NIT Calicut, I specialize in full-stack development, API design, and integrating emerging AI technologies into practical engineering solutions.
+              I architect high-throughput backend infrastructure, applied AI pipelines (RAG, agentic workflows, FastMCP), and core systems in C++ (database engines & B+ trees). Currently pursuing my B.Tech at <strong>NIT Calicut</strong>, I focus on turning complex distributed engineering problems into reliable, high-performing software.
             </p>
             
             <div className={styles.socialLinks}>
@@ -76,11 +109,14 @@ export default function Hero() {
             </div>
             
             <div className={styles.ctaGroup}>
-              <Link href="#projects" className="btn btn-primary">
-                View Projects
+              <Link href="#showcase" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Play size={16} fill="currentColor" /> 3D Live Apps
+              </Link>
+              <Link href="#system-design" className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Network size={16} /> System Design
               </Link>
               <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
-                <Download size={18} style={{ marginRight: '0.5rem' }} /> Resume
+                <Download size={16} style={{ marginRight: '0.4rem' }} /> Resume
               </a>
             </div>
           </motion.div>
