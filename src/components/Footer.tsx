@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowUp, Terminal, ShieldCheck, Cpu, ExternalLink, Mail } from 'lucide-react';
+import { ArrowUp, Mail, FileText } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import styles from './Footer.module.css';
 
@@ -11,214 +11,101 @@ export default function Footer() {
   };
 
   return (
-    <footer className={styles.footer} aria-labelledby="footer-heading">
-      <h2 id="footer-heading" className="sr-only">Footer</h2>
-      
-      {/* Top Ambient Glow & Hairline Divider */}
+    <footer className={styles.footer}>
+      {/* Subtle top hairline divider with cyan center highlight */}
       <div className={styles.topDivider} />
 
       <div className={styles.container}>
-        {/* Main Grid */}
-        <div className={styles.grid}>
-          {/* Col 1: Developer Brand & Status */}
-          <div className={styles.brandCol}>
-            <div className={styles.logoRow}>
-              <span className={styles.codeLogo}>&lt;NK /&gt;</span>
-              <div className={styles.statusPill}>
-                <span className={styles.statusDot} />
-                <span className={styles.statusText}>Systems Operational</span>
-              </div>
-            </div>
-
-            <p className={styles.roleTitle}>Backend &amp; System Design Engineer</p>
-            <p className={styles.bio}>
-              National Institute of Technology, Calicut (Final Year). Architecting high-concurrency event-driven backends, Kafka pipelines, and scalable MERN systems.
+        {/* Main Footer Content */}
+        <div className={styles.mainContent}>
+          {/* Brand & Focus Statement */}
+          <div className={styles.brandBlock}>
+            <Link href="/" className={styles.brandTitle}>
+              Nitin Kumar
+            </Link>
+            <p className={styles.roleSubtitle}>Backend &amp; System Design Engineer</p>
+            <p className={styles.statement}>
+              Focused on high-concurrency event-driven backends, Kafka pipelines, and scalable distributed architectures.
             </p>
+          </div>
 
-            <div className={styles.telemetryCard}>
-              <div className={styles.telemetryItem}>
-                <Terminal size={14} className={styles.telemetryIcon} />
-                <span>Node.js • Kafka • Redis • Docker</span>
-              </div>
-              <div className={styles.telemetryItem}>
-                <ShieldCheck size={14} className={styles.telemetryIcon} />
-                <span>700+ DSA • 5+ Production PaaS Deploys</span>
-              </div>
+          {/* Clean Navigation & Actions */}
+          <div className={styles.linksBlock}>
+            <div className={styles.navGroup}>
+              <span className={styles.groupLabel}>Navigation</span>
+              <nav className={styles.navLinks} aria-label="Footer Navigation">
+                <Link href="#projects" className={styles.linkItem}>Work</Link>
+                <Link href="#system-design" className={styles.linkItem}>System Design</Link>
+                <Link href="#skills" className={styles.linkItem}>Skills</Link>
+                <Link href="#about" className={styles.linkItem}>About</Link>
+                <Link href="#contact" className={styles.linkItem}>Contact</Link>
+              </nav>
             </div>
 
             <div className={styles.socialGroup}>
-              <a
-                href="https://github.com/nitin-code6"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialBtn}
-                aria-label="GitHub Profile"
-              >
-                <FaGithub size={18} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/nitbit07/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialBtn}
-                aria-label="LinkedIn Profile"
-              >
-                <FaLinkedin size={18} />
-              </a>
-              <a
-                href="https://x.com/Nitin_5432"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialBtn}
-                aria-label="X Twitter Profile"
-              >
-                <FaTwitter size={18} />
-              </a>
-              <a
-                href="mailto:nitbit710@gmail.com"
-                className={styles.socialBtn}
-                aria-label="Email Nitin Kumar"
-              >
-                <Mail size={18} />
-              </a>
-            </div>
-          </div>
-
-          {/* Col 2: Navigation Links */}
-          <div className={styles.navCol}>
-            <p className={styles.colHeader}>Architecture &amp; Sections</p>
-            <ul className={styles.linkList}>
-              <li>
-                <Link href="#projects" className={styles.footerLink}>
-                  <span>Featured Systems</span>
-                  <span className={styles.linkBadge}>14 Projects</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="#system-design" className={styles.footerLink}>
-                  <span>System Design Deep Dive</span>
-                  <span className={styles.linkBadgeAccent}>Blueprint</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="#skills" className={styles.footerLink}>
-                  <span>Technical Stack</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="#about" className={styles.footerLink}>
-                  <span>Engineering Journey</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="#experience" className={styles.footerLink}>
-                  <span>Education &amp; Experience</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="#contact" className={styles.footerLink}>
-                  <span>Get In Touch</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 3: Key Architectures & Repos */}
-          <div className={styles.navCol}>
-            <p className={styles.colHeader}>Flagship Repositories</p>
-            <ul className={styles.linkList}>
-              <li>
-                <a
-                  href="https://github.com/nitin-code6/CodeArena"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.repoLink}
-                >
-                  <div className={styles.repoInfo}>
-                    <span className={styles.repoTitle}>CodeArena</span>
-                    <span className={styles.repoDesc}>Kafka, BullMQ &amp; Judge0 sandbox</span>
-                  </div>
-                  <ExternalLink size={13} className={styles.repoArrow} />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/nitin-code6/ReelFinder-AI"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.repoLink}
-                >
-                  <div className={styles.repoInfo}>
-                    <span className={styles.repoTitle}>ReelFinder AI</span>
-                    <span className={styles.repoDesc}>Multimodal AI video search RAG</span>
-                  </div>
-                  <ExternalLink size={13} className={styles.repoArrow} />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/nitin-code6/NovaDB"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.repoLink}
-                >
-                  <div className={styles.repoInfo}>
-                    <span className={styles.repoTitle}>NovaDB</span>
-                    <span className={styles.repoDesc}>B+ tree storage engine in C++</span>
-                  </div>
-                  <ExternalLink size={13} className={styles.repoArrow} />
-                </a>
-              </li>
-              <li>
+              <span className={styles.groupLabel}>Connect</span>
+              <div className={styles.socialIcons}>
                 <a
                   href="https://github.com/nitin-code6"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.allReposLink}
+                  className={styles.iconBtn}
+                  aria-label="GitHub"
+                  title="GitHub"
                 >
-                  <span>Explore all 20+ GitHub Repos</span>
-                  <ExternalLink size={13} />
+                  <FaGithub size={18} />
                 </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 4: Verified Engineering Proof */}
-          <div className={styles.proofCol}>
-            <p className={styles.colHeader}>Verified Signals</p>
-            <div className={styles.metricsBox}>
-              <div className={styles.metricItem}>
-                <div className={styles.metricHeader}>
-                  <Cpu size={14} className={styles.metricIcon} />
-                  <span className={styles.metricVal}>700+ Problems</span>
-                </div>
-                <span className={styles.metricSub}>LeetCode &amp; GeeksForGeeks (1700+ Rating)</span>
-              </div>
-              <div className={styles.metricItem}>
-                <div className={styles.metricHeader}>
-                  <ShieldCheck size={14} className={styles.metricIcon} />
-                  <span className={styles.metricVal}>108+ Unit Tests</span>
-                </div>
-                <span className={styles.metricSub}>PyTest &amp; Jest Test Coverage</span>
-              </div>
-              <div className={styles.metricItem}>
-                <div className={styles.metricHeader}>
-                  <Terminal size={14} className={styles.metricIcon} />
-                  <span className={styles.metricVal}>5+ Live Apps</span>
-                </div>
-                <span className={styles.metricSub}>Production PaaS: Render, Vercel &amp; Netlify</span>
+                <a
+                  href="https://www.linkedin.com/in/nitbit07/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.iconBtn}
+                  aria-label="LinkedIn"
+                  title="LinkedIn"
+                >
+                  <FaLinkedin size={18} />
+                </a>
+                <a
+                  href="https://x.com/Nitin_5432"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.iconBtn}
+                  aria-label="Twitter / X"
+                  title="Twitter / X"
+                >
+                  <FaTwitter size={18} />
+                </a>
+                <a
+                  href="mailto:nitbit710@gmail.com"
+                  className={styles.iconBtn}
+                  aria-label="Email"
+                  title="Email"
+                >
+                  <Mail size={18} />
+                </a>
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.resumePill}
+                  aria-label="Resume PDF"
+                  title="View Resume"
+                >
+                  <FileText size={14} />
+                  <span>Resume</span>
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Sub-Footer Bar */}
+        {/* Bottom Bar */}
         <div className={styles.bottomBar}>
-          <div className={styles.bottomLeft}>
-            <p className={styles.copyright}>
-              &copy; {new Date().getFullYear()} Nitin Kumar. Built with Next.js 16 (Turbopack), React 19 &amp; Three.js.
+          <div className={styles.copyrightBlock}>
+            <p className={styles.copyrightText}>
+              &copy; {new Date().getFullYear()} Nitin Kumar. Built with Next.js, React &amp; Three.js.
             </p>
-            <span className={styles.locationPill}>NIT Calicut, Kerala, India</span>
+            <span className={styles.metaText}>NIT Calicut, Kerala, India</span>
           </div>
 
           <button
