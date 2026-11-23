@@ -3,6 +3,7 @@ import { useState, FormEvent, ChangeEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle2, AlertCircle, Mail, MapPin, Sparkles } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import ContactSceneWrapper from './three/ContactSceneWrapper';
 import styles from './Contact.module.css';
 
 export default function Contact() {
@@ -15,6 +16,38 @@ export default function Contact() {
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+
+  // 3D Card Tilt States
+  const [leftTilt, setLeftTilt] = useState({ rotX: 0, rotY: 0 });
+  const [rightTilt, setRightTilt] = useState({ rotX: 0, rotY: 0 });
+
+  const handleLeftMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setLeftTilt({
+      rotX: -((y - rect.height / 2) / (rect.height / 2)) * 8,
+      rotY: ((x - rect.width / 2) / (rect.width / 2)) * 10,
+    });
+  };
+
+  const handleLeftLeave = () => {
+    setLeftTilt({ rotX: 0, rotY: 0 });
+  };
+
+  const handleRightMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setRightTilt({
+      rotX: -((y - rect.height / 2) / (rect.height / 2)) * 8,
+      rotY: ((x - rect.width / 2) / (rect.width / 2)) * 10,
+    });
+  };
+
+  const handleRightLeave = () => {
+    setRightTilt({ rotX: 0, rotY: 0 });
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -48,7 +81,10 @@ export default function Contact() {
 
   return (
     <section id="contact" className={`section ${styles.contactSection}`} aria-label="Contact Section">
-      <div className="container">
+      {/* 3D Global Communications Matrix Scene */}
+      <ContactSceneWrapper />
+
+      <div className={`container ${styles.container}`}>
         {/* Section Header */}
         <div className={styles.header}>
           <div className={styles.sectionPill}>
@@ -59,20 +95,32 @@ export default function Contact() {
             Get In <span className="text-gradient">Touch</span>
           </h2>
           <p className={styles.subtitle}>
-            Open to 2027 software engineering opportunities in backend infrastructure, distributed systems, and applied AI.
+            Open to final-year & full-time software engineering opportunities in backend infrastructure, system design, and applied AI.
           </p>
         </div>
 
-        {/* 2-Column Responsive Card Grid */}
+        {/* 2-Column Responsive 3D Card Grid */}
         <div className={styles.grid}>
-          {/* Left Column: Direct Info & Socials */}
+          {/* Left Column: Direct Info & Socials with 3D Tilt */}
           <motion.div 
             className={styles.infoCol}
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            onMouseMove={handleLeftMove}
+            onMouseLeave={handleLeftLeave}
+            style={{
+              transform: `perspective(1000px) rotateX(${leftTilt.rotX}deg) rotateY(${leftTilt.rotY}deg)`,
+              transition: leftTilt.rotX === 0 ? 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)' : 'transform 0.08s ease-out'
+            }}
           >
+            {/* 3D Floating Status Badge */}
+            <div className={styles.floatingStatusBadge}>
+              <span className={styles.liveDot} />
+              <span>Response &lt; 24h</span>
+            </div>
+
             <h3 className={styles.infoHeading}>Let&apos;s Build Something Resilient</h3>
             <p className={styles.infoText}>
               Whether you are looking for an engineer for high-concurrency systems, queue architectures, or practical AI tooling, I&apos;d love to connect.
@@ -118,13 +166,19 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Right Column: Beautifully Styled Contact Form */}
+          {/* Right Column: 3D Perspective Contact Form */}
           <motion.div 
             className={styles.formCol}
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            onMouseMove={handleRightMove}
+            onMouseLeave={handleRightLeave}
+            style={{
+              transform: `perspective(1000px) rotateX(${rightTilt.rotX}deg) rotateY(${rightTilt.rotY}deg)`,
+              transition: rightTilt.rotX === 0 ? 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)' : 'transform 0.08s ease-out'
+            }}
           >
             <form onSubmit={handleSubmit} className={styles.form}>
               <div className={styles.inputRow}>
@@ -165,7 +219,7 @@ export default function Contact() {
                   required
                   value={formData.subject}
                   onChange={handleChange}
-                  placeholder="2027 Engineering Opportunities"
+                  placeholder="Software Engineering Opportunities"
                   className={styles.input}
                 />
               </div>
@@ -202,11 +256,11 @@ export default function Contact() {
                 <button 
                   type="submit" 
                   disabled={status === 'loading'}
-                  className={`btn btn-primary ${styles.submitBtn}`}
+                  className={styles.submitBtn}
                 >
                   {status === 'loading' ? 'Sending Message...' : (
                     <>
-                      <Send size={15} style={{ marginRight: '0.45rem' }} /> Send Message
+                      <Send size={15} /> Send Message
                     </>
                   )}
                 </button>
