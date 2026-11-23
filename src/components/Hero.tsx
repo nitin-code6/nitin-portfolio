@@ -1,12 +1,14 @@
 'use client';
 import { motion, Variants } from 'framer-motion';
-import { ArrowDown, Download, Mail } from 'lucide-react';
+import { ArrowDown, Download, Mail, Code2, ShieldCheck, Server, Layers } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 import HeroSceneWrapper from './three/HeroSceneWrapper';
 import { portfolioData } from '@/data/portfolioData';
 import styles from './Hero.module.css';
+
+const proofIcons = [Code2, ShieldCheck, Server, Layers];
 
 export default function Hero() {
   const { hero, proofStrip } = portfolioData;
@@ -31,6 +33,8 @@ export default function Hero() {
     }
   };
 
+  const coreTech = ['C++20', 'Python', 'Apache Kafka', 'Redis', 'FastAPI', 'Docker'];
+
   return (
     <section className={styles.heroSection} aria-label="Introduction">
       {/* 3D Distributed Systems R3F Interactive Scene */}
@@ -38,31 +42,14 @@ export default function Hero() {
 
       <div className={`container ${styles.container}`}>
         <motion.div 
-          className={styles.profileGrid}
+          className={styles.heroGrid}
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Avatar Column */}
-          <motion.div variants={itemVariants} className={styles.avatarContainer}>
-            <div className={styles.avatarWrapper}>
-              <div className={styles.avatarGlowRing} />
-              <div className={styles.avatarInner}>
-                <Image 
-                  src="/profile.png" 
-                  alt="Nitin Kumar portrait" 
-                  fill
-                  sizes="(max-width: 768px) 180px, 240px"
-                  style={{ objectFit: 'cover' }}
-                  priority
-                />
-              </div>
-            </div>
-          </motion.div>
-          
-          {/* Main Info Column */}
-          <motion.div variants={itemVariants} className={styles.infoContainer}>
-            {/* Single verified badge as requested */}
+          {/* Left Column: Headline, Pitch, Quick Tech & CTAs */}
+          <motion.div variants={itemVariants} className={styles.infoCol}>
+            {/* Single verified badge */}
             <div className={styles.statusBadge}>
               <span className={styles.pulseDot} />
               <span>{hero.statusBadge}</span>
@@ -79,6 +66,15 @@ export default function Hero() {
             <p className={styles.pitch}>
               {hero.pitch}
             </p>
+
+            {/* Core Tech Stack Pills */}
+            <div className={styles.techPillsRow}>
+              {coreTech.map((tech) => (
+                <span key={tech} className={styles.techPill}>
+                  {tech}
+                </span>
+              ))}
+            </div>
             
             {/* Direct CTAs & Socials (all visible above fold) */}
             <div className={styles.actionsRow}>
@@ -112,6 +108,35 @@ export default function Hero() {
               </div>
             </div>
           </motion.div>
+
+          {/* Right Column: Sleek Glassmorphic Profile Card */}
+          <motion.div variants={itemVariants} className={styles.profileCardCol}>
+            <div className={styles.profileCard}>
+              <div className={styles.cardGlow} />
+              <div className={styles.portraitWrapper}>
+                <Image 
+                  src="/profile.png" 
+                  alt="Nitin Kumar portrait" 
+                  fill
+                  sizes="(max-width: 768px) 240px, 320px"
+                  style={{ objectFit: 'cover' }}
+                  priority
+                />
+              </div>
+
+              {/* Floating Meta Tag: Academic */}
+              <div className={styles.floatingTagTop}>
+                <span className={styles.tagIcon}>🎓</span>
+                <span>NIT Calicut &apos;27</span>
+              </div>
+
+              {/* Floating Meta Tag: Deployed apps */}
+              <div className={styles.floatingTagBottom}>
+                <span className={styles.liveIndicator} />
+                <span>5+ Deployed Apps</span>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Verifiable Trust / Proof Strip */}
@@ -119,23 +144,33 @@ export default function Hero() {
           className={styles.proofStrip}
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
+          transition={{ delay: 0.35, duration: 0.5 }}
         >
-          {proofStrip.map((item, idx) => (
-            <a 
-              key={idx} 
-              href={item.link || '#'} 
-              className={styles.proofItem}
-              target={item.link?.startsWith('http') ? '_blank' : '_self'}
-              rel="noopener noreferrer"
-            >
-              <div className={styles.proofValueRow}>
-                <span className={styles.proofValue}>{item.value}</span>
-                <span className={styles.proofLabel}>{item.label}</span>
-              </div>
-              <span className={styles.proofDetail}>{item.detail}</span>
-            </a>
-          ))}
+          {proofStrip.map((item, idx) => {
+            const Icon = proofIcons[idx] || Code2;
+            const isLive = item.label.toLowerCase().includes('deployed');
+            return (
+              <a 
+                key={idx} 
+                href={item.link || '#'} 
+                className={styles.proofItem}
+                target={item.link?.startsWith('http') ? '_blank' : '_self'}
+                rel="noopener noreferrer"
+              >
+                <div className={styles.proofHeader}>
+                  <div className={styles.iconBadge}>
+                    <Icon size={16} />
+                  </div>
+                  {isLive && <span className={styles.pulseDotSmall} />}
+                </div>
+                <div className={styles.proofValueRow}>
+                  <span className={styles.proofValue}>{item.value}</span>
+                  <span className={styles.proofLabel}>{item.label}</span>
+                </div>
+                <span className={styles.proofDetail}>{item.detail}</span>
+              </a>
+            );
+          })}
         </motion.div>
       </div>
     </section>

@@ -90,8 +90,8 @@ export const portfolioData: PortfolioData = {
     },
     {
       label: "Deployed Apps",
-      value: "4 Live",
-      detail: "Render, Netlify & Vercel PaaS",
+      value: "5+ Live",
+      detail: "Render, Vercel & Netlify PaaS",
       link: "#projects"
     },
     {
@@ -194,6 +194,22 @@ export const portfolioData: PortfolioData = {
       liveUrl: "https://ferryflow.netlify.app/",
       githubUrl: "https://github.com/nitin-code6/FerryFlow",
       verifiedBadge: "Socket.IO • Netlify Live"
+    },
+    {
+      id: "cpulab",
+      title: "CPU Scheduler (CPULab)",
+      role: "OS Kernel Algorithm Simulator",
+      category: "systems",
+      tagline: "Interactive operating system CPU scheduling simulator with dynamic real-time Gantt charts.",
+      whyItMatters: "Understanding low-level OS process scheduling, turnaround metrics, and context-switch latency is tough from textbook math alone.",
+      measurableOutcome: "Deployed live on Vercel; visualizes Round Robin, Preemptive/Non-preemptive SJF, and FCFS with instant turnaround & waiting time telemetry.",
+      problem: "Static formula calculations make it challenging to analyze how algorithmic starvation, burst time variance, and quantum sizes impact CPU utilization.",
+      architecture: "Simulation Engine &rarr; Ready/Wait/Execute Queue Dispatcher &rarr; 60fps Dynamic SVG Gantt Renderer &rarr; Statistical Latency Analytics.",
+      solution: "Engineered an interactive client-side simulation suite with step-by-step cycle tracking, quantum tuning, and comparative scheduling metrics.",
+      tech: ["JavaScript", "React", "SVG Canvas", "OS Algorithms", "CSS Modules", "Vercel"],
+      liveUrl: "https://cpulab.vercel.app/",
+      githubUrl: "https://github.com/nitin-code6/OS-VISUALIZER",
+      verifiedBadge: "OS Simulator • Vercel Live"
     }
   ],
   skills: [
@@ -222,7 +238,7 @@ export const portfolioData: PortfolioData = {
     paragraphs: [
       "I am a third-year undergraduate at the National Institute of Technology, Calicut (NIT Calicut). Although my formal degree path began in Civil Engineering, my true passion lies in computer systems, backend architecture, and applied AI — a discipline I have pursued through thousands of hours of self-directed study, open-source development, and rigorous engineering practice.",
       "My work centers on distributed systems and practical AI tooling. Rather than surface-level wrappers, I focus on the underlying plumbing: message queues with BullMQ and Kafka, isolated container execution with Judge0, unsupervised anomaly detection with LSTM-VAEs, and disk-backed database internals implemented from first principles in C++.",
-      "To date, I have solved 700+ Data Structures and Algorithms problems across LeetCode and GeeksForGeeks, built 4 active production deployments, and authored test-driven backend systems with over 100 passing unit tests. I am actively seeking 2027 software engineering opportunities in backend infrastructure, distributed systems, and applied AI."
+      "To date, I have solved 700+ Data Structures and Algorithms problems across LeetCode and GeeksForGeeks, built 5+ active production deployments, and authored test-driven backend systems with over 100 passing unit tests. I am actively seeking 2027 software engineering opportunities in backend infrastructure, distributed systems, and applied AI."
     ]
   },
   education: [
