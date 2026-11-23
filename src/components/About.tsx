@@ -43,10 +43,10 @@ export default function About() {
             transition={{ duration: 0.5 }}
           >
             <div className={styles.sectionPill}>
-              <span>Engineering Journey</span>
+              <span>About Me</span>
             </div>
             <h2 className={styles.heading}>
-              About <span className="text-gradient">Nitin Kumar</span>
+              Background & <span className="text-gradient">Engineering Journey</span>
             </h2>
 
             {about.paragraphs.map((p, idx) => (

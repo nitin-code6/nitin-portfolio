@@ -1,6 +1,6 @@
 'use client';
 import { motion, Variants } from 'framer-motion';
-import { ArrowDown, Download, Mail, Code2, ShieldCheck, Server, Network } from 'lucide-react';
+import { ArrowDown, Mail, Code2, ShieldCheck, Server, Network, Layers } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -58,7 +58,10 @@ export default function Hero() {
             </div>
 
             <h1 className={styles.name}>
-              <span className={styles.whiteText}>Nitin</span> <span className="text-gradient">Kumar</span>
+              <span className={styles.name3dWrapper}>
+                <span className={styles.whiteText}>Nitin</span>{' '}
+                <span className={styles.gradientText3d}>Kumar</span>
+              </span>
             </h1>
 
             <h2 className={styles.role}>{hero.role}</h2>
@@ -82,14 +85,9 @@ export default function Hero() {
                 <Link href="#projects" className={`btn btn-primary ${styles.primaryCta}`}>
                   View Projects <ArrowDown size={15} />
                 </Link>
-                <a 
-                  href="/resume.pdf" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="btn btn-outline"
-                >
-                  <Download size={15} style={{ marginRight: '0.4rem' }} /> Download Resume
-                </a>
+                <Link href="#system-design" className="btn btn-outline">
+                  <Layers size={15} style={{ marginRight: '0.45rem' }} /> System Architecture
+                </Link>
               </div>
 
               <div className={styles.socialLinks} aria-label="Social Profiles">

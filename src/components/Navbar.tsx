@@ -60,8 +60,10 @@ export default function Navbar() {
 
       <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`} role="banner">
         <div className={`container ${styles.navContainer}`}>
-          <Link href="/" className={styles.logo} aria-label="Nitin Kumar Home">
-            <span style={{ color: '#fff' }}>Nitin</span> <span className="text-gradient">Kumar</span>
+          <Link href="/" className={styles.logo} aria-label="Nitin Kumar Developer Home">
+            <span className={styles.logoPrefix}>&lt;</span>
+            <span className={styles.logoText}>NK</span>
+            <span className={styles.logoSuffix}> /&gt;</span>
           </Link>
 
           {/* Minimal Desktop Nav */}

@@ -190,6 +190,10 @@ export default function UnifiedProjectsCarousel() {
   const [isPaused, setIsPaused] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
+  const aiCount = projects.filter(p => p.category === 'ai').length;
+  const distCount = projects.filter(p => p.category === 'distributed').length;
+  const sysCount = projects.filter(p => p.category === 'systems').length;
+
   const filtered = selectedCategory === 'all' 
     ? projects 
     : projects.filter(p => p.category === selectedCategory);
@@ -260,7 +264,7 @@ export default function UnifiedProjectsCarousel() {
               role="tab"
               aria-selected={selectedCategory === 'ai'}
             >
-              <Brain size={14} /> AI & LLMs (3)
+              <Brain size={14} /> AI & LLMs ({aiCount})
             </button>
             <button
               onClick={() => { setSelectedCategory('distributed'); setCurrentIndex(0); }}
@@ -268,7 +272,7 @@ export default function UnifiedProjectsCarousel() {
               role="tab"
               aria-selected={selectedCategory === 'distributed'}
             >
-              <Zap size={14} /> Distributed Queues (2)
+              <Zap size={14} /> Distributed & Backend ({distCount})
             </button>
             <button
               onClick={() => { setSelectedCategory('systems'); setCurrentIndex(0); }}
@@ -276,7 +280,7 @@ export default function UnifiedProjectsCarousel() {
               role="tab"
               aria-selected={selectedCategory === 'systems'}
             >
-              <Cpu size={14} /> Systems in C++ (1)
+              <Cpu size={14} /> Systems & LLD ({sysCount})
             </button>
           </div>
         </div>
@@ -338,6 +342,21 @@ export default function UnifiedProjectsCarousel() {
                 aria-label={`Go to slide ${idx + 1}`}
               />
             ))}
+          </div>
+
+          {/* Direct GitHub All Repositories Link */}
+          <div className={styles.githubStrip}>
+            <p className={styles.githubStripText}>
+              Want to see more? Explore all 20+ open-source repositories, system architectures, and algorithmic benchmarks.
+            </p>
+            <a 
+              href="https://github.com/nitin-code6?tab=repositories" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className={`btn btn-outline ${styles.githubStripBtn}`}
+            >
+              <FaGithub size={16} /> View All 20+ Repositories on GitHub
+            </a>
           </div>
         </div>
       </div>

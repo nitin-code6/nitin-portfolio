@@ -78,17 +78,46 @@
   font-weight: 500;
 }
 
-/* Typography */
+/* 3D Typographic Headline */
 .name {
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  margin-bottom: 0.4rem;
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin-bottom: 0.5rem;
+  perspective: 800px;
+}
+
+.name3dWrapper {
+  display: inline-block;
+  transform: perspective(600px) rotateX(3deg) translateZ(0);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.name3dWrapper:hover {
+  transform: perspective(600px) rotateX(0deg) translateY(-2px) scale(1.015);
 }
 
 .whiteText {
   color: #ffffff;
+  display: inline-block;
+  text-shadow: 
+    0 1px 1px rgba(255, 255, 255, 0.6),
+    0 2px 0 #94a3b8,
+    0 3px 0 #64748b,
+    0 4px 1px rgba(0, 0, 0, 0.4),
+    0 8px 18px rgba(0, 0, 0, 0.7);
+}
+
+.gradientText3d {
+  display: inline-block;
+  background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 35%, #818cf8 75%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 0 rgba(14, 165, 233, 0.6))
+          drop-shadow(0 4px 10px rgba(14, 165, 233, 0.35))
+          drop-shadow(0 8px 24px rgba(99, 102, 241, 0.3));
 }
 
 .role {
