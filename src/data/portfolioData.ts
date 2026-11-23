@@ -236,14 +236,14 @@ export const portfolioData: PortfolioData = {
   ],
   about: {
     paragraphs: [
-      "I am a third-year undergraduate at the National Institute of Technology, Calicut (NIT Calicut). Although my formal degree path began in Civil Engineering, my true passion lies in backend architecture, system design, and scalable software systems — a discipline I have pursued through thousands of hours of self-directed study, open-source development, and rigorous engineering practice.",
+      "I am a final-year undergraduate at the National Institute of Technology, Calicut (NIT Calicut). Although my formal degree path began in Civil Engineering, my true passion lies in backend architecture, system design, and scalable software systems — a discipline I have pursued through thousands of hours of self-directed study, open-source development, and rigorous engineering practice.",
       "My work centers on high-concurrency backend engineering, system design, and practical full-stack solutions. I specialize in Node.js, the MERN stack, and distributed event-driven systems: message queues with BullMQ and Kafka, isolated container execution with Judge0, real-time telemetry over SSE/WebSockets, and test-driven API development.",
       "To date, I have solved 700+ Data Structures and Algorithms problems across LeetCode and GeeksForGeeks, built 5+ active production deployments, and authored test-driven backend systems with over 100 passing unit tests. I am actively seeking 2027 software engineering opportunities in backend infrastructure, system design, and applied AI."
     ]
   },
   education: [
     {
-      degree: "B.Tech. Undergraduate",
+      degree: "B.Tech. Undergraduate (Final Year)",
       institution: "National Institute of Technology, Calicut (NIT Calicut)",
       period: "2023 — 2027",
       grade: "CGPA: 7.98",

@@ -127,7 +127,7 @@ export default function Hero() {
               {/* Floating Meta Tag: Academic */}
               <div className={styles.floatingTagTop}>
                 <span className={styles.tagIcon}>🎓</span>
-                <span>NIT Calicut &apos;27</span>
+                <span>NIT Calicut (Final Year)</span>
               </div>
 
               {/* Floating Meta Tag: Deployed apps */}
