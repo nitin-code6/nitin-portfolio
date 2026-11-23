@@ -14,12 +14,16 @@ export const metadata: Metadata = {
   keywords: [
     "Nitin Kumar",
     "Backend Engineer",
+    "System Design",
+    "Node.js",
+    "MERN Stack",
+    "Express.js",
     "Distributed Systems",
-    "Applied AI",
     "NIT Calicut",
     "Kafka",
     "BullMQ",
-    "B+ Tree",
+    "Redis",
+    "MongoDB",
     "CodeArena",
     "FastAPI",
     "React",
@@ -28,8 +32,8 @@ export const metadata: Metadata = {
   authors: [{ name: "Nitin Kumar", url: "https://github.com/nitin-code6" }],
   creator: "Nitin Kumar",
   openGraph: {
-    title: "Nitin Kumar | Backend & AI Systems Engineer",
-    description: "I build distributed backends and AI pipelines, from Kafka-powered code judges to a B+ tree database engine in C++.",
+    title: "Nitin Kumar | Backend & System Design Engineer",
+    description: "I build high-concurrency backend architectures, scalable MERN applications, and distributed event-driven systems with Node.js, Express, Kafka, and Redis.",
     url: "https://nitincode.vercel.app",
     siteName: "Nitin Kumar Portfolio",
     locale: "en_US",
@@ -39,7 +43,7 @@ export const metadata: Metadata = {
         url: "/profile.png",
         width: 800,
         height: 800,
-        alt: "Nitin Kumar — Backend & AI Systems Engineer"
+        alt: "Nitin Kumar — Backend & System Design Engineer"
       }
     ]
   },

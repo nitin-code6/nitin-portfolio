@@ -64,8 +64,8 @@ export interface PortfolioData {
 export const portfolioData: PortfolioData = {
   hero: {
     name: "Nitin Kumar",
-    role: "Backend & AI Systems Engineer",
-    pitch: "I build distributed backends and AI pipelines, from Kafka-powered code judges to a B+ tree database engine in C++.",
+    role: "Backend & System Design Engineer | MERN Stack",
+    pitch: "I architect high-concurrency backend systems, scalable MERN stack applications, and distributed event-driven pipelines with Node.js, Express, Kafka, and Redis.",
     statusBadge: "Open to 2027 roles",
     location: "NIT Calicut, India",
     socials: {
@@ -95,10 +95,10 @@ export const portfolioData: PortfolioData = {
       link: "#projects"
     },
     {
-      label: "Database Engine",
-      value: "B+ Tree",
-      detail: "Built from scratch in C++ (NovaDB)",
-      link: "https://github.com/nitin-code6/novadb-engine"
+      label: "System Design",
+      value: "MERN & Node",
+      detail: "Microservices, Kafka & Redis Queues",
+      link: "#system-design"
     }
   ],
   projects: [
@@ -214,14 +214,14 @@ export const portfolioData: PortfolioData = {
   ],
   skills: [
     {
-      name: "Core Systems & Languages",
-      description: "Low-level design, memory mechanics, and compiled systems",
-      skills: ["C++20", "C", "Python", "TypeScript", "JavaScript", "SQL", "Data Structures & Algorithms", "B+ Tree Internals", "SOLID Principles", "OOP"]
+      name: "Backend Architecture & System Design",
+      description: "Scalable microservices, asynchronous queues, and distributed system design (HLD/LLD)",
+      skills: ["System Design (HLD & LLD)", "Node.js", "Express.js", "MERN Stack", "Apache Kafka", "Redis", "BullMQ", "Docker", "RESTful APIs", "Microservices", "Server-Sent Events (SSE)", "Socket.IO"]
     },
     {
-      name: "Distributed & Backend Architecture",
-      description: "High-throughput messaging, microservices, and asynchronous pipelines",
-      skills: ["Node.js", "FastAPI", "Express.js", "Apache Kafka", "BullMQ", "Redis", "Docker", "Socket.IO", "Server-Sent Events (SSE)", "REST APIs"]
+      name: "Full-Stack & Languages",
+      description: "Modern JavaScript/TypeScript ecosystem, Python, and compiled languages",
+      skills: ["JavaScript (ES6+)", "TypeScript", "React.js", "MongoDB", "Python", "FastAPI", "C++20", "SQL", "Data Structures & Algorithms", "SOLID Principles", "OOP"]
     },
     {
       name: "Applied AI & RAG Engineering",
@@ -229,16 +229,16 @@ export const portfolioData: PortfolioData = {
       skills: ["RAG Pipelines", "FastMCP", "LangChain", "Vector Embeddings", "PyTorch", "LSTM-VAE", "Prompt Engineering", "Rotated LLM APIs"]
     },
     {
-      name: "Storage & Cloud Infrastructure",
+      name: "Databases & Cloud Infrastructure",
       description: "Relational, document, and cache stores with deployment pipelines",
-      skills: ["PostgreSQL", "MongoDB", "MySQL", "Redis Caching", "Linux CLI", "Git & GitHub", "Render PaaS", "Vercel", "Netlify", "PyTest"]
+      skills: ["MongoDB", "PostgreSQL", "MySQL", "Redis Caching", "Linux CLI", "Git & GitHub", "Render PaaS", "Vercel", "Netlify", "PyTest", "CI/CD"]
     }
   ],
   about: {
     paragraphs: [
-      "I am a third-year undergraduate at the National Institute of Technology, Calicut (NIT Calicut). Although my formal degree path began in Civil Engineering, my true passion lies in computer systems, backend architecture, and applied AI — a discipline I have pursued through thousands of hours of self-directed study, open-source development, and rigorous engineering practice.",
-      "My work centers on distributed systems and practical AI tooling. Rather than surface-level wrappers, I focus on the underlying plumbing: message queues with BullMQ and Kafka, isolated container execution with Judge0, unsupervised anomaly detection with LSTM-VAEs, and disk-backed database internals implemented from first principles in C++.",
-      "To date, I have solved 700+ Data Structures and Algorithms problems across LeetCode and GeeksForGeeks, built 5+ active production deployments, and authored test-driven backend systems with over 100 passing unit tests. I am actively seeking 2027 software engineering opportunities in backend infrastructure, distributed systems, and applied AI."
+      "I am a third-year undergraduate at the National Institute of Technology, Calicut (NIT Calicut). Although my formal degree path began in Civil Engineering, my true passion lies in backend architecture, system design, and scalable software systems — a discipline I have pursued through thousands of hours of self-directed study, open-source development, and rigorous engineering practice.",
+      "My work centers on high-concurrency backend engineering, system design, and practical full-stack solutions. I specialize in Node.js, the MERN stack, and distributed event-driven systems: message queues with BullMQ and Kafka, isolated container execution with Judge0, real-time telemetry over SSE/WebSockets, and test-driven API development.",
+      "To date, I have solved 700+ Data Structures and Algorithms problems across LeetCode and GeeksForGeeks, built 5+ active production deployments, and authored test-driven backend systems with over 100 passing unit tests. I am actively seeking 2027 software engineering opportunities in backend infrastructure, system design, and applied AI."
     ]
   },
   education: [

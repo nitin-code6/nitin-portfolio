@@ -1,29 +1,35 @@
 'use client';
 import { 
-  SiCplusplus, 
-  SiPython, 
+  SiNodedotjs,
+  SiReact,
+  SiExpress,
+  SiMongodb,
   SiApachekafka, 
   SiRedis, 
-  SiFastapi, 
   SiDocker, 
+  SiTypescript,
+  SiPython, 
   SiPostgresql, 
-  SiPytorch, 
+  SiFastapi, 
   SiNextdotjs,
-  SiTypescript
+  SiCplusplus 
 } from 'react-icons/si';
 import styles from './TechLogosStrip.module.css';
 
 const techLogos = [
-  { name: 'C++20', icon: SiCplusplus, color: '#00599c' },
-  { name: 'Python', icon: SiPython, color: '#3776ab' },
+  { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
+  { name: 'React (MERN)', icon: SiReact, color: '#61dafb' },
+  { name: 'Express', icon: SiExpress, color: '#ffffff' },
+  { name: 'MongoDB', icon: SiMongodb, color: '#47a248' },
   { name: 'Kafka', icon: SiApachekafka, color: '#231f20' },
   { name: 'Redis', icon: SiRedis, color: '#dc382d' },
-  { name: 'FastAPI', icon: SiFastapi, color: '#009688' },
   { name: 'Docker', icon: SiDocker, color: '#2496ed' },
-  { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169e1' },
-  { name: 'PyTorch', icon: SiPytorch, color: '#ee4c2c' },
-  { name: 'Next.js', icon: SiNextdotjs, color: '#ffffff' },
   { name: 'TypeScript', icon: SiTypescript, color: '#3178c6' },
+  { name: 'FastAPI', icon: SiFastapi, color: '#009688' },
+  { name: 'Python', icon: SiPython, color: '#3776ab' },
+  { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169e1' },
+  { name: 'Next.js', icon: SiNextdotjs, color: '#ffffff' },
+  { name: 'C++', icon: SiCplusplus, color: '#00599c' },
 ];
 
 export default function TechLogosStrip() {

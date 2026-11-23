@@ -241,7 +241,7 @@ export default function UnifiedProjectsCarousel() {
             Featured <span className="text-gradient">Projects</span>
           </h2>
           <p className={styles.subtitle}>
-            A unified showcase of my production applications, distributed judges, and C++ database storage engines.
+            A curated showcase of scalable backend architectures, full-stack MERN & AI deployments, and distributed systems.
           </p>
 
           {/* Category Filter Pills */}

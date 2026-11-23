@@ -1,6 +1,6 @@
 'use client';
 import { motion, Variants } from 'framer-motion';
-import { ArrowDown, Download, Mail, Code2, ShieldCheck, Server, Layers } from 'lucide-react';
+import { ArrowDown, Download, Mail, Code2, ShieldCheck, Server, Network } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -8,7 +8,7 @@ import HeroSceneWrapper from './three/HeroSceneWrapper';
 import { portfolioData } from '@/data/portfolioData';
 import styles from './Hero.module.css';
 
-const proofIcons = [Code2, ShieldCheck, Server, Layers];
+const proofIcons = [Code2, ShieldCheck, Server, Network];
 
 export default function Hero() {
   const { hero, proofStrip } = portfolioData;
@@ -33,7 +33,7 @@ export default function Hero() {
     }
   };
 
-  const coreTech = ['C++20', 'Python', 'Apache Kafka', 'Redis', 'FastAPI', 'Docker'];
+  const coreTech = ['Node.js', 'System Design', 'MERN Stack', 'Express.js', 'Apache Kafka', 'Redis', 'Docker'];
 
   return (
     <section className={styles.heroSection} aria-label="Introduction">
