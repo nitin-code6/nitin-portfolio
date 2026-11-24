@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Network, Cpu, Database, ArrowRight, CheckCircle2, AlertTriangle, Layers, Server, ShieldAlert } from 'lucide-react';
 import styles from './SystemDesign.module.css';
@@ -217,6 +217,23 @@ const systems: SystemArchitecture[] = [
 export default function SystemDesign() {
   const [selectedSys, setSelectedSys] = useState<string>(systems[0].id);
   const [activeStep, setActiveStep] = useState<number>(0);
+  const [cardTilt, setCardTilt] = useState({ rotX: 0, rotY: 0 });
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    setCardTilt({
+      rotX: -(y / (rect.height / 2)) * 2,
+      rotY: (x / (rect.width / 2)) * 2
+    });
+  };
+
+  const handleCardMouseLeave = () => {
+    setCardTilt({ rotX: 0, rotY: 0 });
+  };
 
   const activeSystem = systems.find((s) => s.id === selectedSys) || systems[0];
 
@@ -227,13 +244,13 @@ export default function SystemDesign() {
         <div className={styles.header}>
           <div className={styles.sectionBadge}>
             <Network size={14} className={styles.badgeIcon} />
-            <span>Architecture & System Design</span>
+            <span>Architecture &amp; System Design</span>
           </div>
           <h2 className={styles.title}>
-            Engineering Depth & <span className="text-gradient">Systems Architecture</span>
+            Engineering Depth &amp; <span className="text-gradient">Systems Architecture</span>
           </h2>
           <p className={styles.subtitle}>
-            I design reliable, high-throughput backend infrastructure, applied AI pipelines, and core database internals. Explore the architectural blueprints below.
+            Production-grade distributed pipelines, asynchronous queues, and database engine internals designed from first principles.
           </p>
         </div>
 
@@ -256,7 +273,10 @@ export default function SystemDesign() {
                   {sys.icon === 'database' && <Database size={18} />}
                 </div>
                 <div className={styles.tabTextCol}>
-                  <span className={styles.tabHeading}>{sys.title.split(':')[0]}</span>
+                  <div className={styles.tabHeadingRow}>
+                    <span className={styles.tabHeading}>{sys.title.split(':')[0]}</span>
+                    {isSelected && <span className={styles.activeLedDot} />}
+                  </div>
                   <span className={styles.tabBadge}>{sys.badge}</span>
                 </div>
               </button>
@@ -264,20 +284,30 @@ export default function SystemDesign() {
           })}
         </div>
 
-        {/* System Design Blueprint Card */}
-        <div className={styles.blueprintCard}>
+        {/* 3D Interactive System Design Blueprint Card */}
+        <div 
+          ref={cardRef}
+          className={styles.blueprintCard}
+          onMouseMove={handleCardMouseMove}
+          onMouseLeave={handleCardMouseLeave}
+          style={{
+            transform: `perspective(1200px) rotateX(${cardTilt.rotX}deg) rotateY(${cardTilt.rotY}deg)`
+          }}
+        >
           {/* Top Bar: Problem Statement & Summary */}
           <div className={styles.problemBanner}>
             <div className={styles.problemCol}>
-              <span className={styles.labelMuted}>
-                <AlertTriangle size={14} className={styles.alertIcon} /> The Engineering Problem:
-              </span>
+              <div className={styles.cardHeaderBadge}>
+                <AlertTriangle size={14} className={styles.alertIcon} />
+                <span className={styles.problemBadgeLabel}>The Engineering Problem</span>
+              </div>
               <p className={styles.problemText}>{activeSystem.problemStatement}</p>
             </div>
             <div className={styles.solutionCol}>
-              <span className={styles.labelMuted}>
-                <CheckCircle2 size={14} className={styles.checkIcon} /> Architectural Solution:
-              </span>
+              <div className={styles.cardHeaderBadge}>
+                <CheckCircle2 size={14} className={styles.checkIcon} />
+                <span className={styles.solutionBadgeLabel}>Architectural Solution</span>
+              </div>
               <p className={styles.solutionText}>{activeSystem.highLevelArchitecture}</p>
             </div>
           </div>
@@ -363,13 +393,14 @@ export default function SystemDesign() {
                 {activeSystem.engineeringTradeoffs.map((item, idx) => (
                   <div key={idx} className={styles.tradeoffItem}>
                     <div className={styles.tradeoffDecision}>
-                      <strong>Decision:</strong> {item.decision}
+                      <span className={styles.decisionLabel}>Decision:</span> {item.decision}
                     </div>
                     <div className={styles.tradeoffReason}>
-                      <strong>Why:</strong> {item.reason}
+                      <span className={styles.reasonLabel}>Rationale:</span> {item.reason}
                     </div>
                     <div className={styles.tradeoffRejected}>
-                      <strong>Rejected Alternative:</strong> {item.alternativeRejected}
+                      <span className={styles.rejectedBadge}>Evaluated &amp; Rejected</span>
+                      <span className={styles.rejectedText}>{item.alternativeRejected}</span>
                     </div>
                   </div>
                 ))}
@@ -378,7 +409,7 @@ export default function SystemDesign() {
 
             <div className={styles.resilienceCol}>
               <h4 className={styles.colHeader}>
-                <ShieldAlert size={16} /> Fault-Tolerance & Resilience
+                <ShieldAlert size={16} /> Fault-Tolerance &amp; Resilience
               </h4>
               <ul className={styles.resilienceList}>
                 {activeSystem.resilienceMechanisms.map((mech, idx) => (
