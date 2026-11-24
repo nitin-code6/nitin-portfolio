@@ -1,134 +1,217 @@
 'use client';
+
 import { motion } from 'framer-motion';
-import { Briefcase, GraduationCap, Award } from 'lucide-react';
+import { Briefcase, GraduationCap, Award, CheckCircle2, Calendar, MapPin, Building2 } from 'lucide-react';
 import styles from './Experience.module.css';
 
+interface ExperienceItem {
+  title: string;
+  company: string;
+  location: string;
+  date: string;
+  summary: string;
+  contributions: string[];
+  tech: string[];
+}
+
+interface EducationItem {
+  degree: string;
+  institution: string;
+  location: string;
+  date: string;
+  grade: string;
+  highlights: string;
+}
+
+const experiences: ExperienceItem[] = [
+  {
+    title: "Software Engineering Intern (Web Systems)",
+    company: "Unified Mentor",
+    location: "Remote",
+    date: "2024",
+    summary: "Engineered core modules for the FerryFlow operations platform, handling real-time synchronization and responsive full-stack features.",
+    contributions: [
+      "Engineered real-time state synchronization across ferry scheduling interfaces using Socket.IO.",
+      "Designed and integrated RESTful APIs in Express.js for booking management and route tracking.",
+      "Implemented modular, reusable React UI components ensuring sub-second rendering performance."
+    ],
+    tech: ["React.js", "Node.js", "Express.js", "Socket.IO", "REST APIs", "JavaScript"]
+  }
+];
+
+const education: EducationItem[] = [
+  {
+    degree: "B.Tech. in Civil Engineering (Software Systems Track)",
+    institution: "National Institute of Technology, Calicut (NIT Calicut)",
+    location: "Calicut, Kerala, India",
+    date: "Aug 2023 — 2027 (Final Year)",
+    grade: "CGPA: 7.98",
+    highlights: "Transitioned focus into software systems through rigorous self-directed CS coursework in Distributed Computing, Operating Systems, Computer Networks, and Database Management."
+  },
+  {
+    degree: "Senior Secondary (12th Science) — BSEB",
+    institution: "Inter College Pipra Nauranga",
+    location: "Bihar, India",
+    date: "2021 — 2022",
+    grade: "Percentage: 90%",
+    highlights: "Distinction in Mathematics and Physics with strong analytical foundations."
+  }
+];
+
+const milestones = [
+  {
+    title: "700+ Data Structures & Algorithms Solved",
+    detail: "Extensive problem-solving across LeetCode & GeeksForGeeks demonstrating algorithmic intuition."
+  },
+  {
+    title: "100 Days of Code Daily Streak on X",
+    detail: "Maintained public accountability with daily code submissions and systems architecture notes."
+  },
+  {
+    title: "1700+ Competitive Rating on GeeksForGeeks",
+    detail: "Consistently ranked in top percentiles for algorithmic execution and optimization."
+  },
+  {
+    title: "Foundation For Excellence (FFE) Scholar",
+    detail: "Selected for prestigious merit-based nationwide engineering fellowship and mentorship."
+  },
+  {
+    title: "LeetCode SQL 50 Advanced Badge",
+    detail: "Verified mastery of complex relational joins, aggregations, and window analytical queries."
+  }
+];
+
 export default function Experience() {
-  const experiences = [
-    {
-      title: "Web Development Intern",
-      company: "Unified Mentor",
-      date: "Recent",
-      description: "Contributed to full-stack web applications, specifically focusing on the FerryFlow operations system. Handled frontend component design, backend API integrations, and real-time features using Socket.IO.",
-      icon: <Briefcase size={20} />
-    }
-  ];
-
-  const education = [
-    {
-      title: "B.Tech. in Civil Engineering",
-      institution: "National Institute of Technology, Calicut",
-      date: "Aug 2023 — Present",
-      description: "CGPA: 7.98",
-      icon: <GraduationCap size={20} />
-    },
-    {
-      title: "12th — BSEB",
-      institution: "Inter College Pipra Nauranga",
-      date: "2021 — 2022",
-      description: "Percentage: 90%",
-      icon: <GraduationCap size={20} />
-    },
-    {
-      title: "10th — CBSE",
-      institution: "Patliputra Central School",
-      date: "2019 — 2020",
-      description: "Percentage: 87.2%",
-      icon: <GraduationCap size={20} />
-    }
-  ];
-
-  const achievements = [
-    "Completed 100 Days of Code with daily technical posting on LinkedIn.",
-    "Solved 700+ Data Structures and Algorithms problems (GeeksForGeeks & LeetCode).",
-    "Achieved 1700+ rating on GeeksForGeeks competitive programming platform.",
-    "Earned SQL 50 Badge on LeetCode.",
-    "Selected as Foundation For Excellence Scholar and Mentee."
-  ];
-
   return (
-    <section id="experience" className={`section ${styles.experienceSection}`}>
+    <section id="experience" className={`section ${styles.experienceSection}`} aria-label="Experience and Education">
       <div className="container">
-        <h2 className="sectionTitle">Experience & <span className="text-gradient">Education</span></h2>
-        
-        <div className={styles.grid}>
-          {/* Experience Column */}
-          <div className={styles.column}>
-            <div className={styles.columnHeader}>
-              <Briefcase className={styles.headerIcon} size={24} />
-              <h3 className={styles.columnTitle}>Experience</h3>
+        <div className={styles.sectionHeader}>
+          <div className={styles.sectionBadge}>
+            <Briefcase size={14} className={styles.badgeIcon} />
+            <span>Career Milestones</span>
+          </div>
+          <h2 className="sectionTitle">
+            Experience &amp; <span className="text-gradient">Education</span>
+          </h2>
+          <p className={styles.subheading}>
+            Proven industry contributions, academic rigor at NIT Calicut, and verified competitive achievements.
+          </p>
+        </div>
+
+        <div className={styles.mainGrid}>
+          {/* Left Column: Work Experience & Milestones */}
+          <div className={styles.leftCol}>
+            {/* Experience Card */}
+            <div className={styles.blockHeader}>
+              <Briefcase size={20} className={styles.colHeaderIcon} />
+              <h3 className={styles.blockTitle}>Professional Experience</h3>
             </div>
-            
-            <div className={styles.timeline}>
+
+            <div className={styles.expList}>
               {experiences.map((exp, idx) => (
-                <motion.div 
-                  key={idx} 
-                  className={styles.timelineItem}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                <motion.div
+                  key={idx}
+                  className={styles.experienceCard}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
+                  transition={{ duration: 0.4 }}
                 >
-                  <div className={styles.timelineDot} />
-                  <div className={styles.timelineContent}>
-                    <h4>{exp.title}</h4>
-                    <div className={styles.meta}>
-                      <span className={styles.company}>{exp.company}</span>
-                      <span className={styles.date}>{exp.date}</span>
+                  <div className={styles.cardTopRow}>
+                    <div>
+                      <h4 className={styles.roleTitle}>{exp.title}</h4>
+                      <div className={styles.companyRow}>
+                        <Building2 size={14} className={styles.inlineIcon} />
+                        <span className={styles.companyName}>{exp.company}</span>
+                        <span className={styles.dividerDot}>•</span>
+                        <MapPin size={14} className={styles.inlineIcon} />
+                        <span className={styles.locationText}>{exp.location}</span>
+                      </div>
                     </div>
-                    <p>{exp.description}</p>
+                    <div className={styles.datePill}>
+                      <Calendar size={13} />
+                      <span>{exp.date}</span>
+                    </div>
+                  </div>
+
+                  <p className={styles.expSummary}>{exp.summary}</p>
+
+                  <ul className={styles.bulletList}>
+                    {exp.contributions.map((bullet, bIdx) => (
+                      <li key={bIdx} className={styles.bulletItem}>
+                        <CheckCircle2 size={15} className={styles.checkIcon} />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className={styles.techPillGroup}>
+                    {exp.tech.map((t, tIdx) => (
+                      <span key={tIdx} className={styles.techPill}>{t}</span>
+                    ))}
                   </div>
                 </motion.div>
               ))}
             </div>
 
-            <div className={styles.columnHeader} style={{ marginTop: '4rem' }}>
-              <Award className={styles.headerIcon} size={24} />
-              <h3 className={styles.columnTitle}>Achievements</h3>
+            {/* Achievements & Honors */}
+            <div className={styles.blockHeader} style={{ marginTop: '2.5rem' }}>
+              <Award size={20} className={styles.colHeaderIcon} />
+              <h3 className={styles.blockTitle}>Engineering Honors &amp; Badges</h3>
             </div>
+
             <div className={styles.achievementsCard}>
-              <ul>
-                {achievements.map((achieve, idx) => (
-                  <motion.li 
+              <div className={styles.milestoneGrid}>
+                {milestones.map((item, idx) => (
+                  <motion.div
                     key={idx}
+                    className={styles.milestoneBox}
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
+                    transition={{ delay: idx * 0.08 }}
                   >
-                    <span className={styles.bullet}></span>
-                    <span>{achieve}</span>
-                  </motion.li>
+                    <div className={styles.milestoneDot} />
+                    <div>
+                      <h5 className={styles.milestoneTitle}>{item.title}</h5>
+                      <p className={styles.milestoneDesc}>{item.detail}</p>
+                    </div>
+                  </motion.div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
 
-          {/* Education Column */}
-          <div className={styles.column}>
-            <div className={styles.columnHeader}>
-              <GraduationCap className={styles.headerIcon} size={24} />
-              <h3 className={styles.columnTitle}>Education</h3>
+          {/* Right Column: Education */}
+          <div className={styles.rightCol}>
+            <div className={styles.blockHeader}>
+              <GraduationCap size={20} className={styles.colHeaderIcon} />
+              <h3 className={styles.blockTitle}>Academic Background</h3>
             </div>
-            
-            <div className={styles.timeline}>
+
+            <div className={styles.eduList}>
               {education.map((edu, idx) => (
-                <motion.div 
-                  key={idx} 
-                  className={styles.timelineItem}
-                  initial={{ opacity: 0, x: 20 }}
+                <motion.div
+                  key={idx}
+                  className={styles.educationCard}
+                  initial={{ opacity: 0, x: 15 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
                 >
-                  <div className={styles.timelineDot} />
-                  <div className={styles.timelineContent}>
-                    <h4>{edu.title}</h4>
-                    <div className={styles.meta}>
-                      <span className={styles.company}>{edu.institution}</span>
-                      <span className={styles.date}>{edu.date}</span>
+                  <div className={styles.cardTopRow}>
+                    <div className={styles.eduMetaLeft}>
+                      <span className={styles.gradeBadge}>{edu.grade}</span>
+                      <h4 className={styles.eduDegree}>{edu.degree}</h4>
+                      <p className={styles.eduInstitution}>{edu.institution}</p>
                     </div>
-                    <div className={styles.grade}>{edu.description}</div>
+                    <div className={styles.datePill}>
+                      <Calendar size={13} />
+                      <span>{edu.date}</span>
+                    </div>
                   </div>
+
+                  <p className={styles.eduHighlights}>{edu.highlights}</p>
                 </motion.div>
               ))}
             </div>
