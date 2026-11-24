@@ -319,29 +319,29 @@ export const portfolioData: PortfolioData = {
   ],
   skills: [
     {
-      name: "Currently Exploring & Active R&D",
-      description: "Frontier deep-dives in cloud automation, container orchestration, and autonomous agent architectures",
-      skills: ["DevOps", "Agentic AI", "Kubernetes (K8s)", "CI/CD GitHub Actions", "FastMCP Protocol", "Multi-Agent Workflows", "Docker Compose / Swarm", "Tool-Calling LLMs", "IaC (Terraform Basics)", "Prometheus & Grafana"]
+      name: "Exploring: DevOps & Agentic AI",
+      description: "Cloud automation & autonomous agent architectures.",
+      skills: ["DevOps", "Agentic AI", "Kubernetes", "CI/CD Actions", "FastMCP", "Multi-Agent Workflows", "Docker"]
     },
     {
-      name: "Backend Architecture & System Design",
-      description: "Scalable microservices, asynchronous queues, and distributed system design (HLD/LLD)",
-      skills: ["System Design (HLD & LLD)", "Node.js", "Express.js", "MERN Stack", "Apache Kafka", "Redis", "BullMQ", "Docker", "RESTful APIs", "Microservices", "Server-Sent Events (SSE)", "Socket.IO"]
+      name: "Backend & Distributed Systems",
+      description: "High-concurrency microservices & event streaming.",
+      skills: ["Node.js", "Express.js", "Apache Kafka", "Redis", "BullMQ", "Docker", "SSE", "Judge0"]
     },
     {
-      name: "Full-Stack & Languages",
-      description: "Modern JavaScript/TypeScript ecosystem, Python, and compiled languages",
-      skills: ["JavaScript (ES6+)", "TypeScript", "React.js", "MongoDB", "Python", "FastAPI", "C++20", "SQL", "Data Structures & Algorithms", "SOLID Principles", "OOP"]
+      name: "Core Languages & Systems",
+      description: "Compiled systems programming & algorithmic depth.",
+      skills: ["C++20", "TypeScript", "JavaScript", "Python", "Data Structures", "LLD & Patterns"]
     },
     {
-      name: "Applied AI & RAG Engineering",
-      description: "Production LLM workflows, sequence modeling, and agent protocols",
-      skills: ["RAG Pipelines", "FastMCP", "LangChain", "Vector Embeddings", "PyTorch", "LSTM-VAE", "Prompt Engineering", "Rotated LLM APIs"]
+      name: "Applied AI & GenAI",
+      description: "Production RAG & deep sequence modeling.",
+      skills: ["RAG Pipelines", "FastMCP", "LangChain", "Vector DB", "PyTorch", "LSTM-VAE"]
     },
     {
-      name: "Databases & Cloud Infrastructure",
-      description: "Relational, document, and cache stores with deployment pipelines",
-      skills: ["MongoDB", "PostgreSQL", "MySQL", "Redis Caching", "Linux CLI", "Git & GitHub", "Render PaaS", "Vercel", "Netlify", "PyTest", "CI/CD"]
+      name: "Databases & Infrastructure",
+      description: "Persistent storage, caching & cloud pipelines.",
+      skills: ["MongoDB", "PostgreSQL", "Redis", "Docker", "Linux CLI", "Git", "Render PaaS"]
     }
   ],
   about: {
