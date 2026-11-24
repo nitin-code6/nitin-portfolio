@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Briefcase, GraduationCap, Award, CheckCircle2, Calendar, MapPin, Building2, Sparkles, Terminal, Code2 } from 'lucide-react';
+import { Briefcase, GraduationCap, Award, CheckCircle2, Calendar, MapPin, Building2, Trophy, Star } from 'lucide-react';
 import styles from './Experience.module.css';
 
 interface ExperienceItem {
@@ -55,41 +55,64 @@ const education: EducationItem[] = [
     location: "Bihar, India",
     date: "2021 — 2022",
     grade: "Percentage: 90%",
-    highlights: "Distinction in Mathematics and Physics with strong analytical foundations."
+    highlights: "Distinction in Mathematics and Physics with strong analytical and problem-solving foundations."
   }
 ];
 
 const honorsList = [
   {
+    title: "Introduction to Algorithms and Analysis",
+    issuer: "NPTEL • Ministry of Education & IITs",
+    badge: "Top 1% in India • Elite + Gold",
+    detail: "Ranked in the top 1% percentile nationwide across premier institutes in rigorous algorithmic analysis, asymptotic bounds, and dynamic programming.",
+    isFeatured: true
+  },
+  {
     title: "Foundation For Excellence (FFE) Scholar",
-    detail: "Awarded prestigious merit-based nationwide engineering fellowship and mentorship for academic excellence."
+    issuer: "FFE India Trust",
+    badge: "Nationwide Fellowship",
+    detail: "Awarded prestigious merit-based nationwide engineering fellowship and mentorship for academic and technical excellence.",
+    isFeatured: false
   },
   {
     title: "700+ Data Structures & Algorithms Solved",
-    detail: "Extensive problem-solving across LeetCode & GeeksForGeeks demonstrating algorithmic intuition."
+    issuer: "LeetCode & GeeksForGeeks",
+    badge: "Competitive DSA",
+    detail: "Extensive problem-solving across LeetCode & GeeksForGeeks demonstrating deep algorithmic intuition.",
+    isFeatured: false
   },
   {
     title: "1700+ Competitive Rating on GeeksForGeeks",
-    detail: "Consistently ranked in the top percentiles nationwide for algorithmic speed and optimization."
+    issuer: "GeeksForGeeks",
+    badge: "Top Percentile",
+    detail: "Consistently ranked in the top percentiles nationwide for algorithmic speed and optimization.",
+    isFeatured: false
   },
   {
     title: "100 Days of Code Daily Streak on X",
-    detail: "Maintained public accountability with daily code submissions, system designs, and DSA writeups."
+    issuer: "Public Engineering on X (Twitter)",
+    badge: "Consistency",
+    detail: "Maintained public accountability with daily code submissions, system designs, and DSA writeups.",
+    isFeatured: false
   },
   {
     title: "LeetCode SQL 50 Advanced Badge",
-    detail: "Verified mastery of complex relational joins, aggregations, and window analytical queries."
+    issuer: "LeetCode",
+    badge: "Database Mastery",
+    detail: "Verified mastery of complex relational joins, aggregations, and window analytical queries.",
+    isFeatured: false
   }
 ];
 
 export default function Experience() {
   return (
-    <section id="experience" className={`section ${styles.experienceSection}`} aria-label="Experience and Education">
+    <section id="experience" className={`section ${styles.experienceSection}`} aria-label="Experience, Education and Honors">
       <div className="container">
+        {/* Header */}
         <div className={styles.sectionHeader}>
           <div className={styles.sectionBadge}>
             <Briefcase size={14} className={styles.badgeIcon} />
-            <span>Career Milestones</span>
+            <span>Career &amp; Credentials</span>
           </div>
           <h2 className="sectionTitle">
             Experience &amp; <span className="text-gradient">Education</span>
@@ -99,16 +122,16 @@ export default function Experience() {
           </p>
         </div>
 
-        <div className={styles.mainGrid}>
-          {/* Left Column: Work Experience & Engineering Practice */}
-          <div className={styles.leftCol}>
-            {/* Experience Card */}
+        {/* Tier 1: Symmetrical Top Grid (Experience & Education) */}
+        <div className={styles.topGrid}>
+          {/* Left Column: Work Experience */}
+          <div className={styles.col}>
             <div className={styles.blockHeader}>
               <Briefcase size={20} className={styles.colHeaderIcon} />
               <h3 className={styles.blockTitle}>Professional Experience</h3>
             </div>
 
-            <div className={styles.expList}>
+            <div className={styles.cardList}>
               {experiences.map((exp, idx) => (
                 <motion.div
                   key={idx}
@@ -153,89 +176,25 @@ export default function Experience() {
                   </div>
                 </motion.div>
               ))}
-
-              {/* Engineering Standards & Practice Card (fills left column gracefully) */}
-              <motion.div
-                className={styles.practiceCard}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.1 }}
-              >
-                <div className={styles.practiceHeader}>
-                  <Terminal size={18} className={styles.practiceIcon} />
-                  <h4 className={styles.practiceTitle}>Engineering Invariants &amp; Delivery Standards</h4>
-                </div>
-                <p className={styles.practiceDesc}>
-                  Every system is built with automated testing, containerized sandboxes, and continuous delivery:
-                </p>
-                <div className={styles.practicePillGrid}>
-                  <div className={styles.practicePill}>
-                    <Code2 size={13} className={styles.pillIcon} />
-                    <span>108+ PyTests &amp; Jest Unit Tests</span>
-                  </div>
-                  <div className={styles.practicePill}>
-                    <Terminal size={13} className={styles.pillIcon} />
-                    <span>Docker Container Sandboxes</span>
-                  </div>
-                  <div className={styles.practicePill}>
-                    <CheckCircle2 size={13} className={styles.pillIcon} />
-                    <span>Non-blocking I/O Event Loops</span>
-                  </div>
-                  <div className={styles.practicePill}>
-                    <Sparkles size={13} className={styles.pillIcon} />
-                    <span>5+ Production PaaS Deployments</span>
-                  </div>
-                </div>
-              </motion.div>
             </div>
           </div>
 
-          {/* Right Column: Academic Rigor & National Certifications */}
-          <div className={styles.rightCol}>
+          {/* Right Column: Academic Background */}
+          <div className={styles.col}>
             <div className={styles.blockHeader}>
               <GraduationCap size={20} className={styles.colHeaderIcon} />
-              <h3 className={styles.blockTitle}>Academic Rigor &amp; Honors</h3>
+              <h3 className={styles.blockTitle}>Academic Background</h3>
             </div>
 
-            <div className={styles.eduList}>
-              {/* Featured National Certification Card: NPTEL Top 1% */}
-              <motion.div
-                className={`${styles.educationCard} ${styles.nptelCard}`}
-                initial={{ opacity: 0, x: 15 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
-              >
-                <div className={styles.cardTopRow}>
-                  <div className={styles.eduMetaLeft}>
-                    <div className={styles.goldBadgeRow}>
-                      <span className={styles.goldBadge}>
-                        <Award size={13} />
-                        <span>Top 1% Across India • Elite + Gold</span>
-                      </span>
-                    </div>
-                    <h4 className={styles.eduDegree}>Design and Analysis of Algorithms</h4>
-                    <p className={styles.nptelIssuer}>NPTEL • Ministry of Education &amp; IITs</p>
-                  </div>
-                  <div className={styles.datePillGold}>
-                    <span>National Certification</span>
-                  </div>
-                </div>
-                <p className={styles.eduHighlights}>
-                  Achieved Top 1% percentile standing across India among thousands of candidates in advanced algorithmic analysis, asymptotic bounds, dynamic programming, and network flows.
-                </p>
-              </motion.div>
-
-              {/* NIT Calicut Degree */}
+            <div className={styles.cardList}>
               {education.map((edu, idx) => (
                 <motion.div
                   key={idx}
                   className={styles.educationCard}
-                  initial={{ opacity: 0, x: 15 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: (idx + 1) * 0.1 }}
+                  transition={{ delay: idx * 0.1 }}
                 >
                   <div className={styles.cardTopRow}>
                     <div className={styles.eduMetaLeft}>
@@ -251,32 +210,39 @@ export default function Experience() {
                   <p className={styles.eduHighlights}>{edu.highlights}</p>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </div>
 
-              {/* Verified Engineering Honors Box */}
+        {/* Tier 2: Full-Width Verified Honors & Certifications Grid (Zero Empty Space) */}
+        <div className={styles.honorsSection}>
+          <div className={styles.blockHeader}>
+            <Trophy size={20} className={styles.colHeaderIconGold} />
+            <h3 className={styles.blockTitle}>Honors, Certifications &amp; Competitive Milestones</h3>
+          </div>
+
+          <div className={styles.honorsGrid}>
+            {honorsList.map((item, idx) => (
               <motion.div
-                className={styles.achievementsCard}
+                key={idx}
+                className={`${styles.honorCard} ${item.isFeatured ? styles.featuredGoldCard : ''}`}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.2 }}
+                transition={{ delay: idx * 0.08 }}
               >
-                <div className={styles.achievementsHeader}>
-                  <Award size={16} className={styles.achieveIcon} />
-                  <span className={styles.achieveTitle}>Verified Competitive Milestones</span>
+                <div className={styles.honorHeader}>
+                  <span className={item.isFeatured ? styles.badgeGold : styles.badgeCyan}>
+                    {item.isFeatured && <Star size={12} className={styles.starIcon} />}
+                    <span>{item.badge}</span>
+                  </span>
+                  <span className={styles.honorIssuer}>{item.issuer}</span>
                 </div>
-                <div className={styles.milestoneGrid}>
-                  {honorsList.map((item, idx) => (
-                    <div key={idx} className={styles.milestoneBox}>
-                      <div className={styles.milestoneDot} />
-                      <div>
-                        <h5 className={styles.milestoneTitle}>{item.title}</h5>
-                        <p className={styles.milestoneDesc}>{item.detail}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+
+                <h4 className={styles.honorTitle}>{item.title}</h4>
+                <p className={styles.honorDetail}>{item.detail}</p>
               </motion.div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

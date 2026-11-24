@@ -37,23 +37,22 @@
   margin-top: 0.75rem;
 }
 
-/* Main Grid: Equal-height 2-column balanced layout */
-.mainGrid {
+/* Tier 1: Symmetrical Top Grid (Left: Work, Right: Education) */
+.topGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
-  align-items: stretch;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
 }
 
-@media (min-width: 1024px) {
-  .mainGrid {
-    grid-template-columns: 1.15fr 1fr;
-    gap: 3rem;
+@media (min-width: 900px) {
+  .topGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
   }
 }
 
-.leftCol,
-.rightCol {
+.col {
   display: flex;
   flex-direction: column;
 }
@@ -69,22 +68,25 @@
   color: #38bdf8;
 }
 
+.colHeaderIconGold {
+  color: #f59e0b;
+}
+
 .blockTitle {
-  font-size: 1.18rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: #f1f5f9;
   letter-spacing: -0.01em;
 }
 
-.expList,
-.eduList {
+.cardList {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  flex: 1;
+  height: 100%;
 }
 
-/* Experience Card */
+/* Experience & Education Cards */
 .experienceCard,
 .educationCard {
   background: rgba(15, 23, 42, 0.65);
@@ -94,6 +96,8 @@
   backdrop-filter: blur(14px);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
 }
 
 .experienceCard:hover,
@@ -102,56 +106,6 @@
   border-color: rgba(56, 189, 248, 0.4);
   transform: translateY(-3px);
   box-shadow: 0 18px 40px -12px rgba(14, 165, 233, 0.2);
-}
-
-/* NPTEL Featured Gold Card */
-.nptelCard {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.07) 0%, rgba(15, 23, 42, 0.85) 100%) !important;
-  border: 1px solid rgba(245, 158, 11, 0.35) !important;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 25px rgba(245, 158, 11, 0.08) !important;
-}
-
-.nptelCard:hover {
-  border-color: rgba(245, 158, 11, 0.6) !important;
-  box-shadow: 0 18px 40px -12px rgba(245, 158, 11, 0.22) !important;
-}
-
-.goldBadgeRow {
-  margin-bottom: 0.5rem;
-}
-
-.goldBadge {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #f59e0b;
-  background: rgba(245, 158, 11, 0.12);
-  border: 1px solid rgba(245, 158, 11, 0.35);
-  padding: 0.18rem 0.6rem;
-  border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.nptelIssuer {
-  font-size: 0.84rem;
-  color: #f59e0b;
-  font-weight: 600;
-}
-
-.datePillGold {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.22rem 0.65rem;
-  border-radius: 9999px;
-  background: rgba(245, 158, 11, 0.1);
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  font-size: 0.72rem;
-  color: #f59e0b;
-  font-weight: 700;
-  white-space: nowrap;
 }
 
 .cardTopRow {
@@ -164,7 +118,7 @@
 }
 
 .roleTitle {
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   font-weight: 700;
   color: #fff;
   margin-bottom: 0.35rem;
@@ -247,6 +201,7 @@
   gap: 0.45rem;
   padding-top: 0.85rem;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: auto;
 }
 
 .techPill {
@@ -258,76 +213,6 @@
   padding: 0.15rem 0.55rem;
   border-radius: 6px;
   font-family: var(--font-mono, monospace);
-}
-
-/* Practice Card */
-.practiceCard {
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, rgba(15, 23, 42, 0.75) 100%);
-  border: 1px solid rgba(56, 189, 248, 0.22);
-  border-radius: 18px;
-  padding: 1.4rem;
-  backdrop-filter: blur(14px);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-  transition: all 0.25s ease;
-}
-
-.practiceCard:hover {
-  background: rgba(15, 23, 42, 0.85);
-  border-color: rgba(56, 189, 248, 0.4);
-}
-
-.practiceHeader {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  margin-bottom: 0.5rem;
-}
-
-.practiceIcon {
-  color: #38bdf8;
-}
-
-.practiceTitle {
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: #f1f5f9;
-}
-
-.practiceDesc {
-  font-size: 0.84rem;
-  color: #94a3b8;
-  line-height: 1.5;
-  margin-bottom: 0.85rem;
-}
-
-.practicePillGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.55rem;
-}
-
-@media (max-width: 600px) {
-  .practicePillGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.practicePill {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.4rem 0.65rem;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  font-size: 0.78rem;
-  color: #cbd5e1;
-  font-family: var(--font-mono, monospace);
-}
-
-.pillIcon {
-  color: #38bdf8;
-  flex-shrink: 0;
 }
 
 /* Education Specifics */
@@ -366,76 +251,120 @@
   margin: 0;
 }
 
-/* Achievements Card */
-.achievementsCard {
-  background: rgba(15, 23, 42, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  padding: 1.4rem;
-  backdrop-filter: blur(14px);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-}
-
-.achievementsHeader {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.achieveIcon {
-  color: #38bdf8;
-}
-
-.achieveTitle {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #f1f5f9;
-}
-
-.milestoneGrid {
+/* Tier 2: Full-Width Honors & Certifications Grid (Symmetrical, Zero Empty Space) */
+.honorsSection {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
 }
 
-.milestoneBox {
+.honorsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .honorsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .honorsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.honorCard {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.35rem;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.5);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.65rem 0.75rem;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.2s ease;
+  flex-direction: column;
 }
 
-.milestoneBox:hover {
-  background: rgba(14, 165, 233, 0.06);
-  border-color: rgba(56, 189, 248, 0.25);
-  transform: translateX(3px);
+.honorCard:hover {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 35px -10px rgba(14, 165, 233, 0.2);
 }
 
-.milestoneDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #38bdf8;
-  box-shadow: 0 0 8px #38bdf8;
-  flex-shrink: 0;
-  margin-top: 0.35rem;
+/* Featured NPTEL Gold Card */
+.featuredGoldCard {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.09) 0%, rgba(15, 23, 42, 0.88) 100%) !important;
+  border: 1px solid rgba(245, 158, 11, 0.38) !important;
+  box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.6), 0 0 25px rgba(245, 158, 11, 0.08) !important;
 }
 
-.milestoneTitle {
-  font-size: 0.88rem;
+.featuredGoldCard:hover {
+  border-color: rgba(245, 158, 11, 0.6) !important;
+  box-shadow: 0 18px 40px -10px rgba(245, 158, 11, 0.22) !important;
+}
+
+.honorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.badgeGold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  color: #f1f5f9;
-  margin-bottom: 0.15rem;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  padding: 0.18rem 0.55rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-.milestoneDesc {
-  font-size: 0.78rem;
+.starIcon {
+  color: #f59e0b;
+}
+
+.badgeCyan {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #38bdf8;
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 0.18rem 0.55rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.honorIssuer {
+  font-size: 0.74rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.honorTitle {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 0.45rem;
+  line-height: 1.35;
+}
+
+.honorDetail {
+  font-size: 0.82rem;
   color: #94a3b8;
-  line-height: 1.45;
+  line-height: 1.5;
   margin: 0;
 }
