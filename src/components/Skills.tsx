@@ -6,6 +6,9 @@ import styles from './Skills.module.css';
 export default function Skills() {
   const { skills } = portfolioData;
 
+  // Tripled set ensures track is over 4500px wide, completely eliminating any blank gaps on wide/4K screens
+  const extendedSkills = [...skills, ...skills, ...skills];
+
   const renderCard = (group: typeof skills[0], key: string) => {
     const isExploring = group.name.includes('Exploring');
     return (
@@ -57,10 +60,10 @@ export default function Skills() {
         <div className={styles.carouselContainer} role="region" aria-label="Skills circular carousel">
           <div className={styles.track}>
             <div className={styles.group}>
-              {skills.map((group, idx) => renderCard(group, `group1-${idx}`))}
+              {extendedSkills.map((group, idx) => renderCard(group, `group1-${idx}`))}
             </div>
             <div className={styles.group} aria-hidden="true">
-              {skills.map((group, idx) => renderCard(group, `group2-${idx}`))}
+              {extendedSkills.map((group, idx) => renderCard(group, `group2-${idx}`))}
             </div>
           </div>
         </div>
