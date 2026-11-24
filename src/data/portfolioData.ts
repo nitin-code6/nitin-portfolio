@@ -371,7 +371,7 @@ export const portfolioData: PortfolioData = {
     {
       role: "Web Development Intern",
       organization: "Unified Mentor",
-      period: "2024",
+      period: "2026",
       summary: "Contributed to full-stack web applications, focusing on the FerryFlow operations system. Handled frontend component architecture, backend API integrations, and real-time Socket.IO synchronization."
     }
   ]

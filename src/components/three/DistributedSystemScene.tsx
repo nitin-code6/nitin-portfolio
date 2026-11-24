@@ -1,6 +1,6 @@
 'use client';
 import { useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -9,39 +9,47 @@ function DistributedPipeline() {
   const groupRef = useRef<THREE.Group>(null);
   const streamParticlesRef = useRef<THREE.Points>(null);
   const ringRef = useRef<THREE.Mesh>(null);
+  const { viewport } = useThree();
 
-  // Ingestion Queue Nodes (Floating gracefully to the left of the card)
+  // Desktop vs mobile horizontal positioning:
+  // On desktop (viewport.width >= 5.0), place around x = 1.62 to tightly frame the right-hand profile card.
+  // On mobile/tablet, center behind the profile card.
+  const isDesktop = viewport.width >= 5.0;
+  const targetX = isDesktop ? 1.62 : 0;
+  const targetY = isDesktop ? 0 : -0.7;
+
+  // Ingestion Queue Nodes (Floating cleanly along the left perimeter of the card, kept far right of hero text)
   const queueNodes = useMemo(() => [
-    [-1.25, 0.75, 0.15],
-    [-1.45, 0.05, -0.2],
-    [-1.2, -0.65, 0.15]
+    [-0.85, 0.65, 0.15],
+    [-0.95, 0.05, -0.15],
+    [-0.85, -0.65, 0.15]
   ] as [number, number, number][], []);
 
   // Worker Execution Nodes (Framing top and bottom outer perimeter)
   const workerNodes = useMemo(() => [
-    [-0.55, 1.15, 0.1],
-    [0.55, 1.15, -0.15],
-    [-0.55, -1.15, -0.1],
-    [0.55, -1.15, 0.15]
+    [-0.45, 0.95, 0.1],
+    [0.45, 0.95, -0.15],
+    [-0.45, -0.95, -0.1],
+    [0.45, -0.95, 0.15]
   ] as [number, number, number][], []);
 
-  // Event Stream Egress Nodes (Looping to the right of the card)
+  // Event Stream Egress Nodes (Looping along the right perimeter of the card)
   const streamNodes = useMemo(() => [
-    [1.25, 0.75, -0.15],
-    [1.45, 0.05, 0.2],
-    [1.2, -0.65, -0.15]
+    [0.85, 0.65, -0.15],
+    [0.95, 0.05, 0.2],
+    [0.85, -0.65, -0.15]
   ] as [number, number, number][], []);
 
-  // Deterministic live event particle cloud orbiting along the perimeter
+  // Deterministic live event particle cloud orbiting tight along the perimeter
   const particlePositions = useMemo(() => {
-    const count = 40;
+    const count = 36;
     const positions = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
       const angle = (i / count) * Math.PI * 2;
-      const radius = 1.35 + (((i * 17) % 20) / 100);
+      const radius = 1.15 + (((i * 17) % 15) / 100);
       positions[i * 3] = Math.cos(angle) * radius;
       positions[i * 3 + 1] = Math.sin(angle) * (radius * 0.85);
-      positions[i * 3 + 2] = (((i * 31) % 40) / 40 - 0.5) * 0.5;
+      positions[i * 3 + 2] = (((i * 31) % 40) / 40 - 0.5) * 0.4;
     }
     return positions;
   }, []);
@@ -101,72 +109,82 @@ function DistributedPipeline() {
   });
 
   return (
-    <group ref={groupRef}>
-      {/* Network Pathways with subtle fiber glow */}
+    <group ref={groupRef} position={[targetX, targetY, -0.2]}>
+      {/* Fiber Network Connections */}
       <lineSegments geometry={networkLines}>
-        <lineBasicMaterial color="#0284c7" transparent opacity={0.11} depthWrite={false} />
+        <lineBasicMaterial color="#38bdf8" transparent opacity={0.18} blending={THREE.AdditiveBlending} />
       </lineSegments>
 
-      {/* Floating Ingestion Queue Nodes (Glowing Cyan Spheres) */}
-      <Float speed={2} rotationIntensity={0.2} floatIntensity={0.25}>
-        {queueNodes.map((pos, i) => (
-          <mesh key={`q-${i}`} position={pos}>
-            <sphereGeometry args={[0.07, 16, 16]} />
-            <meshStandardMaterial
-              color="#38bdf8"
-              emissive="#0284c7"
-              emissiveIntensity={1.0}
-              roughness={0.2}
-              metalness={0.8}
-            />
-          </mesh>
-        ))}
-      </Float>
-
-      {/* Worker Sandboxes (Crystalline Octahedrons framing the card) */}
-      <Float speed={2.2} rotationIntensity={0.4} floatIntensity={0.3}>
-        {workerNodes.map((pos, i) => (
-          <group key={`w-${i}`} position={pos}>
+      {/* Floating Ingestion Queue Nodes */}
+      {queueNodes.map((pos, i) => (
+        <Float key={`queue-${i}`} speed={2 + i * 0.4} rotationIntensity={0.2} floatIntensity={0.35}>
+          <group position={pos}>
             <mesh>
-              <octahedronGeometry args={[0.11, 0]} />
+              <sphereGeometry args={[0.075, 24, 24]} />
               <meshStandardMaterial
-                color="#818cf8"
-                emissive="#6366f1"
-                emissiveIntensity={1.1}
+                color="#38bdf8"
+                emissive="#0284c7"
+                emissiveIntensity={0.8}
                 roughness={0.15}
                 metalness={0.85}
               />
             </mesh>
-            <mesh>
-              <octahedronGeometry args={[0.14, 0]} />
-              <meshBasicMaterial
-                color="#a5b4fc"
-                wireframe
-                transparent
-                opacity={0.25}
-              />
+            {/* Halo glow */}
+            <mesh scale={[1.4, 1.4, 1.4]}>
+              <sphereGeometry args={[0.075, 16, 16]} />
+              <meshBasicMaterial color="#38bdf8" transparent opacity={0.2} />
             </mesh>
           </group>
-        ))}
-      </Float>
+        </Float>
+      ))}
 
-      {/* Stream Egress Nodes (Emerald / Cyan Relays) */}
-      <Float speed={1.8} rotationIntensity={0.3} floatIntensity={0.25}>
-        {streamNodes.map((pos, i) => (
-          <mesh key={`s-${i}`} position={pos}>
-            <sphereGeometry args={[0.075, 16, 16]} />
-            <meshStandardMaterial
-              color="#34d399"
-              emissive="#059669"
-              emissiveIntensity={1.1}
-              roughness={0.2}
-              metalness={0.8}
-            />
-          </mesh>
-        ))}
-      </Float>
+      {/* Floating Worker Execution Nodes */}
+      {workerNodes.map((pos, i) => (
+        <Float key={`worker-${i}`} speed={1.8 + i * 0.3} rotationIntensity={0.25} floatIntensity={0.4}>
+          <group position={pos}>
+            <mesh>
+              <sphereGeometry args={[0.085, 24, 24]} />
+              <meshStandardMaterial
+                color="#6366f1"
+                emissive="#4f46e5"
+                emissiveIntensity={0.9}
+                roughness={0.2}
+                metalness={0.8}
+              />
+            </mesh>
+            {/* Halo glow */}
+            <mesh scale={[1.4, 1.4, 1.4]}>
+              <sphereGeometry args={[0.085, 16, 16]} />
+              <meshBasicMaterial color="#818cf8" transparent opacity={0.2} />
+            </mesh>
+          </group>
+        </Float>
+      ))}
 
-      {/* Orbiting Live Data Stream Particles */}
+      {/* Floating Event Stream Egress Nodes */}
+      {streamNodes.map((pos, i) => (
+        <Float key={`stream-${i}`} speed={2.2 + i * 0.5} rotationIntensity={0.3} floatIntensity={0.3}>
+          <group position={pos}>
+            <mesh>
+              <sphereGeometry args={[0.07, 24, 24]} />
+              <meshStandardMaterial
+                color="#22d3ee"
+                emissive="#06b6d4"
+                emissiveIntensity={0.85}
+                roughness={0.15}
+                metalness={0.9}
+              />
+            </mesh>
+            {/* Halo glow */}
+            <mesh scale={[1.4, 1.4, 1.4]}>
+              <sphereGeometry args={[0.07, 16, 16]} />
+              <meshBasicMaterial color="#22d3ee" transparent opacity={0.2} />
+            </mesh>
+          </group>
+        </Float>
+      ))}
+
+      {/* Live Stream Orbital Particle Ring */}
       <points ref={streamParticlesRef}>
         <bufferGeometry>
           <bufferAttribute
@@ -186,7 +204,7 @@ function DistributedPipeline() {
 
       {/* Outer Orbital Frame Ring */}
       <mesh ref={ringRef} rotation={[0, 0, 0]}>
-        <ringGeometry args={[1.45, 1.48, 64]} />
+        <ringGeometry args={[1.22, 1.25, 64]} />
         <meshBasicMaterial color="#38bdf8" transparent opacity={0.07} side={THREE.DoubleSide} />
       </mesh>
     </group>
@@ -217,10 +235,8 @@ export default function DistributedSystemScene() {
         <pointLight position={[3, 2, 2]} intensity={0.9} color="#818cf8" />
         <fog attach="fog" args={['#050814', 3.0, 6.5]} />
 
-        {/* Coordinated with the right-hand profile card */}
-        <group position={[1.35, 0, -0.15]}>
-          <DistributedPipeline />
-        </group>
+        {/* Distributed Pipeline Scene */}
+        <DistributedPipeline />
       </Canvas>
     </div>
   );

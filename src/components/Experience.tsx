@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Briefcase, GraduationCap, Award, CheckCircle2, Calendar, MapPin, Building2, Trophy, Star } from 'lucide-react';
+import { Briefcase, GraduationCap, CheckCircle2, Calendar, MapPin, Building2, Trophy, Star } from 'lucide-react';
 import styles from './Experience.module.css';
 
 interface ExperienceItem {
@@ -28,7 +28,7 @@ const experiences: ExperienceItem[] = [
     title: "Software Engineering Intern (Web Systems)",
     company: "Unified Mentor",
     location: "Remote",
-    date: "2024",
+    date: "2026",
     summary: "Engineered core modules for the FerryFlow operations platform, handling real-time synchronization, backend API services, and responsive client interfaces.",
     contributions: [
       "Engineered real-time state synchronization across ferry scheduling interfaces using Socket.IO.",
@@ -61,7 +61,7 @@ const education: EducationItem[] = [
 
 const honorsList = [
   {
-    title: "Introduction to Algorithms and Analysis",
+    title: "Introduction to Algorithm and Analysis",
     issuer: "NPTEL • Ministry of Education & IITs",
     badge: "Top 1% in India • Elite + Gold",
     detail: "Ranked in the top 1% percentile nationwide across premier institutes in rigorous algorithmic analysis, asymptotic bounds, and dynamic programming.",

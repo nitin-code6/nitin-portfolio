@@ -285,7 +285,7 @@ export default function SystemDesign() {
         </div>
 
         {/* 3D Interactive System Design Blueprint Card */}
-        <div 
+        <div
           ref={cardRef}
           className={styles.blueprintCard}
           onMouseMove={handleCardMouseMove}
